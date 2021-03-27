@@ -173,6 +173,9 @@
       "by-now": "By now",
       "amount": "Amount",
       "details": "Details"
+    },
+    "errors": {
+      "default": "Something bad happened. Please try again later or contact the system owner."
     }
   }
 }

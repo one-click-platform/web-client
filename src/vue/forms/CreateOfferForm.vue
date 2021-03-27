@@ -154,6 +154,7 @@ import { required, maxLength } from '@validators'
 import moment from 'moment'
 import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 import NoDataMessage from '@/vue/common/NoDataMessage'
+import Loader from '@/vue/common/Loader'
 
 const DESCRIPTION_MAX_LENGTH = 500
 
@@ -163,7 +164,7 @@ const EVENTS = {
 
 export default {
   name: 'create-offer-form',
-  components: { NoDataMessage },
+  components: { NoDataMessage, Loader },
   mixins: [FormMixin, MetamaskMixin],
 
   data: _ => ({
