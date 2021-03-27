@@ -47,7 +47,7 @@ export default Object.assign(
     /**
      * Ethereum network type. 'main' for Main Ethereum Network
      */
-    ETHEREUM_NETWORK_TYPE: 'main',
+    ETHEREUM_NETWORK_TYPE: 'test',
 
     /**
      * Session storage key
@@ -56,7 +56,7 @@ export default Object.assign(
 
     API_URL: '',
     AUCTION_ADDRESS: '0x2E52df519d2c2c655987603807c69784Af03008E',
-    TOKEN_ADDRESS: '0x84c904000a7f83cf8B6031DaA88F4eE9247c25E3',
+    TOKEN_ADDRESS: '0xf4c0aafE31B9006d5d7A6E6251971824360FC1C0',
     CURRENCY_ADDRESS: '0xD091b0031Bd1489fCF411A24AcB4e7D6bec27f1c',
   },
   // process.env,

@@ -94,13 +94,13 @@ export default {
       return accounts[0]
     },
 
-    async createToken () {
+    async createToken (data) {
       const contract = new window.web3.eth.Contract(
         tokenABI,
         config.TOKEN_ADDRESS
       )
       const account = await this.getAccount()
-      const mint = contract.methods.mint(account)
+      const mint = contract.methods.mint(account, 2) // add byteArray)
 
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
