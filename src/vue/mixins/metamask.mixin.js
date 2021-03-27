@@ -91,11 +91,6 @@ export default {
     },
 
     async createToken () {
-      if (!this.isMainNet && config.ETHEREUM_NETWORK_TYPE === MAIN_CHAIN_ID) {
-        Bus.error('metamask-mixin.chain-error')
-        throw new Error('Application only supports Ethereum Main Network')
-      }
-
       const contract = new window.web3.eth.Contract('ABI')
       const account = await this.getAccount()
 
@@ -120,7 +115,7 @@ export default {
       step,
       description
     ) {
-      const startTime = moment(startDate).unix()
+      const startTime = moment(startDate).unix() / 1000
       const duration = moment(endDate).diff(moment(startDate), 'seconds')
 
       const contract = new window.web3.eth.Contract('ABI')
