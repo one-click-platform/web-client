@@ -146,12 +146,18 @@ export default {
       const account = await this.getAccount()
       const ids = await contract.methods.tokensOfOwner(account).call()
       const tokens = await Promise.all(
-        ids.map(async id => {
-          const data = await contract.methods.tokensData(id).call()
-          return { id, ...JSON.parse(data) }
-        })
+        ids.map(id => this.getTokenDataById(id))
       )
       return tokens
+    },
+
+    async getTokenDataById (id) {
+      const contract = new window.web3.eth.Contract(
+        tokenABI,
+        config.TOKEN_ADDRESS
+      )
+      const data = await contract.methods.tokensData(id).call()
+      return { id, ...JSON.parse(data) }
     },
 
     async getOffers () {
@@ -160,8 +166,7 @@ export default {
         config.AUCTION_ADDRESS
       )
       const offerEvents = await contract.getPastEvents('AuctionCreated', { fromBlock: 0, toBlock: 'latest' })
-      const offerIds = offerEvents.map(evt => evt.returnValues._id)
-
+      const offerIds = offerEvents.map(evt => evt.returnValues._auctionId)
       const offers = await Promise.all(
         offerIds.map(id => this.getOfferDataById(id))
       )
@@ -175,7 +180,8 @@ export default {
       )
       const status = await contract.methods.getStatus(id).call()
       const details = await contract.methods.getAuctionInfo(id).call()
-      return { status, ...details }
+      const tokenData = await this.getTokenDataById(details.tokenId)
+      return { status, ...details, ...tokenData }
     },
 
     async createOffer (
