@@ -29,7 +29,6 @@
             :max-size="LOGO_MAX_SIZE"
             :disabled="formMixin.isDisabled"
             @blur="touchField('form.logo')"
-            :error-message="getFieldErrorMessage('form.logo')"
           />
         </div>
       </div>
@@ -98,10 +97,8 @@ export default {
           required,
         },
         description: {
-          maxLength: maxLength(DESCRIPTION_MAX_LENGTH),
-        },
-        logo: {
           required,
+          maxLength: maxLength(DESCRIPTION_MAX_LENGTH),
         },
       },
     }

@@ -100,7 +100,8 @@
       "logo-lbl": "Image",
       "submit-btn": "Submit",
       "desc-lbl": "Description",
-      "logo-note": "JPG or PNG, no less than 120x120 px"
+      "logo-note": "JPG or PNG, no less than 120x120 px",
+      "offer-created-msg": "Offer successfully created"
     },
     "validation": {
       "field-error_required": "Please fill out this field",

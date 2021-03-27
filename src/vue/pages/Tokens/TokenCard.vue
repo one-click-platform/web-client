@@ -13,12 +13,12 @@
         {{ token.description }}
       </template>
       <template slot="actions">
-        <button
+        <!-- <button
           class="app__button-flat"
-          @click="$emit(EVENTS.withdraw)"
+          @click="$emit(EVENTS.details)"
         >
-          {{ 'token-card.withdraw' | globalize }}
-        </button>
+          {{ 'token-card.details' | globalize }}
+        </button> -->
       </template>
     </card>
   </div>
@@ -29,7 +29,7 @@ import Card from '@/vue/common/Card'
 import CardLogo from '@/vue/common/CardLogo'
 
 const EVENTS = {
-  withdraw: 'withdraw',
+  details: 'details',
 }
 
 export default {
