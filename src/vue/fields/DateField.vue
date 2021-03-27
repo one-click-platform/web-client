@@ -3,7 +3,9 @@
     class="date-field-flatpickr"
     :class="{ 'date-field-flatpickr__input--disabled': disabled }"
   >
-    <label v-if="label" class="date-field-flatpickr__label">
+    <label
+      v-if="label"
+      class="date-field-flatpickr__label">
       {{ label }}
     </label>
 
