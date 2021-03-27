@@ -165,7 +165,9 @@ export default {
     white-space: nowrap;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: 1rem;
+    height: 8.4rem;
   }
 
 </style>

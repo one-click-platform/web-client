@@ -88,8 +88,32 @@ export default {
       isDrawerShown: false,
     }
   },
-  created () {
+  async created () {
+    await this.getOffers()
     this.isLoaded = true
+  },
+  methods: {
+    async getOffers () {
+      try {
+        this.list = [{
+          logoUrl: '',
+          name: 'Name',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
+        },
+        {
+          logoUrl: '',
+          name: 'Name',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
+        },
+        {
+          logoUrl: '',
+          name: 'Name',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
+        }]
+      } catch (e) {
+        console.error(e)
+      }
+    },
   },
 }
 </script>

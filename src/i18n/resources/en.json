@@ -129,6 +129,10 @@
       "description-msg": "Please note, that if you have other dApp plugins installed, like Dapper, they might conflict with Metamask. If you can't connect Metamask, turn them off and reload the page.",
       "status-title": "Metamask status",
       "skip-metamask": "Skip"
+    },
+    "offer-card": {
+      "bid": "Bid",
+      "amount": "Amount"
     }
   }
 }
