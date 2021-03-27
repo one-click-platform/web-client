@@ -35,7 +35,6 @@
           >
             <token-card
               :token="item"
-              @withdraw="withdraw"
             />
           </card-list>
         </template>

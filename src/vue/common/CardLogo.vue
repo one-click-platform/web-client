@@ -1,8 +1,8 @@
 <template>
   <div class="card-logo">
     <img
-      v-if="true || imgUrl"
-      src="https://nachasi.com/wp-content/uploads/2021/02/NFT-tokeny-lyshe-trend-chy-evolyutsiya-kryptovalyut_.png"
+      v-if="imgUrl"
+      :src="imgUrl"
       class="card-logo__viewer card-logo__viewer--image"
       :class="{ 'card-logo__viewer--full-cover' : isFullCover }"
     >

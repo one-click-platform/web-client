@@ -109,7 +109,7 @@ export default {
         config.TOKEN_ADDRESS
       )
       const account = await this.getAccount()
-      const mint = contract.methods.mint(account, 2) // add byteArray)
+      const mint = contract.methods.mint(account, JSON.stringify(data))
 
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
@@ -126,8 +126,15 @@ export default {
         tokenABI,
         config.TOKEN_ADDRESS
       )
-
-      return contract
+      const account = await this.getAccount()
+      const ids = await contract.methods.tokensOfOwner(account).call()
+      const tokens = await Promise.all(
+        ids.map(async id => {
+          const data = await contract.methods.tokensData(id).call()
+          return { id, ...JSON.parse(data) }
+        })
+      )
+      return tokens
     },
 
     async getOffers () {

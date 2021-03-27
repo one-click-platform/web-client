@@ -64,6 +64,8 @@ import TopBar from '@/vue/common/TopBar'
 import Drawer from '@/vue/common/Drawer'
 import CreateOfferForm from '@/vue/forms/CreateOfferForm.vue'
 import OfferCard from '@/vue/pages/Offers/OfferCard'
+import { ErrorHandler } from '@/js/helpers/error-handler'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
 export default {
   name: 'offers-page',
@@ -78,6 +80,7 @@ export default {
     CreateOfferForm,
     OfferCard,
   },
+  mixins: [MetamaskMixin],
 
   data () {
     return {
@@ -88,31 +91,13 @@ export default {
     }
   },
   async created () {
-    await this.getOffers()
+    try {
+      this.list = await this.getOffers()
+    } catch (e) {
+      ErrorHandler.processWithoutFeedback(e)
+      this.isLoadFailed = true
+    }
     this.isLoaded = true
-  },
-  methods: {
-    async getOffers () {
-      try {
-        this.list = [{
-          logoUrl: '',
-          name: 'Name',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
-        },
-        {
-          logoUrl: '',
-          name: 'Name',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
-        },
-        {
-          logoUrl: '',
-          name: 'Name',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
-        }]
-      } catch (e) {
-        console.error(e)
-      }
-    },
   },
 }
 </script>
