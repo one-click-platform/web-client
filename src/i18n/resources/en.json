@@ -71,6 +71,16 @@
     },
     "pages-names": {
       "assets": "Assets"
+    },
+    "metamask-form": {
+      "no-data-title": "Metamask is not installed",
+      "no-data-message": "Install metamask to get better experience in using our platform",
+      "network-error-msg": "Error on loading metamask or wrong Network. Application supports only Main Ethereum Network",
+      "connect-metamask-btn": "Connect MetaMask",
+      "enable-metamask-connecting-btn": "Processing...",
+      "description-msg": "Please note, that if you have other dApp plugins installed, like Dapper, they might conflict with Metamask. If you can't connect Metamask, turn them off and reload the page.",
+      "status-title": "Metamask status",
+      "skip-metamask": "Skip"
     }
   }
 }

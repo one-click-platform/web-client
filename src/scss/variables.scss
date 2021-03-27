@@ -208,3 +208,9 @@ $col-background-skeleton-loader: rgba($col-primary, 0.10);
 $col-tooltip-wrapper-msg-bg: rgba($_black, 0.9);
 $col-tooltip-wrapper-msg-text: $_white;
 $col-tooltip-wrapper-border-style: transparent transparent $col-tooltip-wrapper-msg-bg transparent;
+
+
+// error-message colors:
+$col-error-message-text: rgba($col-error, 0.8);
+$col-error-message-description: rgba($col-error, 0.7);
+$col-error-message-icon-color: rgba($col-error, 0.4);
