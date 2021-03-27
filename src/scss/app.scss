@@ -1,0 +1,496 @@
+@import './variables';
+@import './mixins';
+@import '../../static/fonts/index.css';
+@import '../../node_modules/@mdi/font/css/materialdesignicons.min.css';
+@import '../../node_modules/flatpickr/dist/flatpickr.css';
+@import '../../node_modules/nprogress/nprogress.css';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+body,
+input,
+select,
+button,
+textarea {
+  background: $col-app-background;
+  color: $col-primary;
+  font-family: 'Circular', 'Noto Sans', '-apple-system', 'BlinkMacSystemFont', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.005rem;
+}
+
+textarea,
+button,
+select,
+input,
+body,
+span,
+p {
+  font-size: 1.4rem;
+}
+
+p, li, ul {
+  color: $col-text;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  cursor: pointer;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+
+  /* Remove excess padding and border in Firefox 4+ */
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
+
+
+input,
+textarea {
+  width: 100%;
+}
+
+html {
+  font-size: 10px;
+  // Fixes the bug:
+  // https://www.igorkromin.net/index.php/2016/05/20/mobile-safari-scrolling-problem-with-an-input-field-inside-a-fixed-div/
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+
+  &,
+  & main {
+    background-color: $col-app-content-background;
+  }
+
+
+  .app__page-content-wrp {
+    flex: 1;
+    width: 100%;
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+
+  & .markdown-formatter,
+  & .editor-preview {
+
+    p,
+    ul,
+    ol,
+    li {
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    ul {
+      display: block;
+      margin: 0 0 1em;
+      padding: 0 0 0 4em;
+
+      & > li {
+        list-style-type: disc;
+      }
+    }
+
+    ol {
+      display: block;
+      margin: 0 0 1em;
+      padding: 0 0 0 4em;
+
+      & > li {
+        list-style-type: decimal;
+      }
+    }
+
+    h1 {
+      display: block;
+      font-size: 2em;
+      margin: 0.67em 0;
+      font-weight: 300;
+    }
+
+    h2 {
+      display: block;
+      font-size: 1.5em;
+      margin: 0.83em 0;
+      font-weight: 300;
+    }
+
+    h3 {
+      display: block;
+      font-size: 1.17em;
+      margin: 1em 0;
+      font-weight: bold;
+    }
+
+    h4 {
+      display: block;
+      font-size: 1em;
+      margin: 1.33em 0;
+      font-weight: bold;
+    }
+
+    h5 {
+      display: block;
+      font-size: 0.83em;
+      margin: 1.67em 0;
+      font-weight: bold;
+    }
+
+    h6 {
+      display: block;
+      font-size: 0.67em;
+      margin: 2.33em 0;
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+h1.app__page-heading,
+h2.app__page-heading,
+h3.app__page-heading,
+h4.app__page-heading,
+h5.app__page-heading,
+h6.app__page-heading {
+  display: block;
+  color: $col-text-page-heading;
+  padding: 0;
+}
+
+h1.app__page-heading {
+  font-size: 2em;
+  margin: 0 0 0.67em;
+  font-weight: 300;
+}
+
+h2.app__page-heading {
+  font-size: 1.5em;
+  margin: 0 0 1.5em;
+  font-weight: 300;
+}
+
+h3.app__page-heading {
+  font-size: 1.17em;
+  margin: 0 0 1em;
+  font-weight: bold;
+}
+
+h4.app__page-heading {
+  font-size: 1em;
+  margin: 0 0 1.33em;
+  font-weight: bold;
+}
+
+h5.app__page-heading {
+  font-size: 0.83em;
+  margin: 0 0 1.67em;
+  font-weight: bold;
+}
+
+h6.app__page-heading {
+  font-size: 0.67em;
+  margin: 0 0 2.33em;
+  font-weight: bold;
+}
+
+.app__button {
+  @include button();
+}
+
+.app__button-icon {
+  @include button-icon();
+}
+
+.app__button-flat {
+  @include button-flat();
+}
+
+.app__button-raised {
+  @include button-raised();
+
+  &--danger {
+    background-color: $col-error;
+  }
+}
+
+.app__card {
+  background-color: $col-block-bg;
+
+  &:not(.app__card--shadow-none) {
+    @include box-shadow();
+  }
+}
+
+.app__card-content,
+.app__card-header {
+  padding: 3.2rem;
+
+  @include respond-to(medium) {
+    padding: 2.4rem;
+  }
+  @include respond-to(small) {
+    padding: 1.2rem 1.6rem;
+  }
+}
+
+.app__card-actions {
+  padding: 1.2rem 3.2rem 3.2rem;
+  display: flex;
+  justify-content: flex-end;
+
+  @include respond-to(medium) {
+    padding: 0.8rem 2.4rem 2.4rem;
+  }
+  @include respond-to(small) {
+    padding: 0.8rem 1.6rem 1.6rem;
+  }
+}
+
+.app__table {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $col-table-background;
+
+    thead {
+      th {
+        font-size: 1.2rem;
+        text-align: left;
+        padding: 1.6rem 1.6rem 1.1rem;
+        overflow: hidden;
+        max-width: 12rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: $col-table-head-text;
+        font-weight: normal;
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: $col-table-alt-row-background;
+        }
+
+        &:not([disabled]):hover {
+          background-color: $col-table-row-selected;
+        }
+
+        &[disabled] {
+          background-color: $col-table-row-disabled;
+        }
+
+        td {
+          font-size: 1.4rem;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          max-width: 12rem;
+          white-space: nowrap;
+          color: $col-table-cell-text;
+          padding: 1rem 1.6rem;
+        }
+      }
+    }
+  }
+
+  &.app__table--clickable-rows tbody tr {
+    cursor: pointer;
+  }
+
+  &--last-td-to-right {
+    & > table > tbody > tr > td:not(:only-of-type):last-of-type {
+      text-align: right;
+    }
+  }
+}
+
+.app__table--with-shadow {
+  box-shadow: 0 0.6rem 1rem 0 $col-table-shadow;
+}
+
+.app__table-title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 1.6rem;
+}
+
+.app__table-left-shadow {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    bottom: -1rem;
+    left: 0;
+    width: 0.8rem;
+    box-shadow: inset 0.5rem -0.6rem 0.6rem 0 $col-table-scroll-side-shadow;
+  }
+}
+
+.app__table-right-shadow {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    bottom: -1rem;
+    right: 0;
+    width: 0.8rem;
+    box-shadow: inset -0.5rem -0.6rem 0.6rem 0 $col-table-scroll-side-shadow;
+  }
+}
+
+.app__select {
+
+  &--no-border {
+    // to remove the borders and background of the asset-selector to use the
+    // component outside forms
+    div span {
+      border-bottom: 0 !important;
+      background-size: 0 !important;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    i {
+      top: 0.3rem;
+    }
+  }
+}
+
+
+.app__select-with-label {
+
+  &--no-border {
+    // to remove the borders and background of the asset-selector-with-label
+    // to use the component outside forms
+    div span {
+      border-bottom: 0 !important;
+      background-size: 0 !important;
+    }
+
+    i {
+      top: 1.8rem;
+    }
+  }
+}
+
+#nprogress {
+  z-index: 5;
+
+  .bar {
+    // !importants are for overwrite nprogress’ styles
+    background: $col-primary !important;
+    height: 0.3rem !important;
+  }
+}
+
+/* stylelint-disable selector-nested-pattern */
+.instruction__markdown {
+  h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $col-primary;
+  }
+
+  a {
+    color: $col-primary;
+  }
+
+  ul, ol {
+    margin-top: 1.6rem;
+    margin-bottom: 4rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      color: $col-primary;
+      padding: 0.6rem 0;
+      text-decoration: none;
+      width: fit-content;
+
+      &:before {
+        content: '\2022';
+        color: $_thinPurple;
+        font-size: 0.8rem;
+        margin: -0.25rem 0.9rem 0 0.4rem;
+      }
+
+      a:visited {
+        color: $col-primary;
+      }
+    }
+  }
+
+  p {
+    padding-bottom: 1.4rem;
+    font-size: 1.4rem;
+    color: $col-secondary;
+  }
+
+  h4 {
+    margin-top: 2.6rem;
+    font-size: 1.4rem;
+    padding-top: 0;
+    padding-bottom: 0.3rem;
+    opacity: 1;
+    font-weight: 700;
+    color: $col-primary;
+  }
+}
+/* stylelint-enable selector-nested-pattern */

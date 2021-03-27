@@ -1,0 +1,311 @@
+{
+  "data": {
+    "id": "DOGE",
+    "type": "converted-balances-collections",
+    "relationships": {
+      "asset": { "data": { "id": "DOGE", "type": "assets" } },
+      "states": {
+        "data": [
+          {
+            "id": "BA2KPCCL3NAD6MKWL7J3YWVTBKSPPHNSGDKNT3ZXUNCP22T7SP4NTBZL",
+            "type": "converted-balance-states"
+          },
+          {
+            "id": "BAU2E3CHLQOSL2SGF47UNS2CRTEMABLRE26BZNNTPPO5ZHVUHCXETNSQ",
+            "type": "converted-balance-states"
+          },
+          {
+            "id": "BBSPQJQA55V7Q5W2SIHLJA6R6BRFCI3OJRVAJVJSDDAAEVGXYL6GOY6A",
+            "type": "converted-balance-states"
+          },
+          {
+            "id": "BAXHCEXRYZDMV533S6SPEJA3Z43PPAAYL3HDULRWF7SQARETSWH2ZZTE",
+            "type": "converted-balance-states"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "BA2KPCCL3NAD6MKWL7J3YWVTBKSPPHNSGDKNT3ZXUNCP22T7SP4NTBZL",
+      "type": "balances",
+      "relationships": {
+        "asset": { "data": { "id": "USD", "type": "assets" } },
+        "state": {
+          "data": {
+            "id": "BA2KPCCL3NAD6MKWL7J3YWVTBKSPPHNSGDKNT3ZXUNCP22T7SP4NTBZL",
+            "type": "balances-state"
+          }
+        }
+      }
+    },
+    {
+      "id": "BAXHCEXRYZDMV533S6SPEJA3Z43PPAAYL3HDULRWF7SQARETSWH2ZZTE",
+      "type": "balances",
+      "relationships": {
+        "asset": { "data": { "id": "ALI", "type": "assets" } },
+        "state": {
+          "data": {
+            "id": "BAXHCEXRYZDMV533S6SPEJA3Z43PPAAYL3HDULRWF7SQARETSWH2ZZTE",
+            "type": "balances-state"
+          }
+        }
+      }
+    },
+    {
+      "id": "BBSPQJQA55V7Q5W2SIHLJA6R6BRFCI3OJRVAJVJSDDAAEVGXYL6GOY6A",
+      "type": "balances",
+      "relationships": {
+        "asset": { "data": { "id": "BTC", "type": "assets" } },
+        "state": {
+          "data": {
+            "id": "BBSPQJQA55V7Q5W2SIHLJA6R6BRFCI3OJRVAJVJSDDAAEVGXYL6GOY6A",
+            "type": "balances-state"
+          }
+        }
+      }
+    },
+    {
+      "id": "BBSPQJQA55V7Q5W2SIHLJA6R6BRFCI3OJRVAJVJSDDAAEVGXYL6GOY6A",
+      "type": "balances-state",
+      "attributes": { "available": "1.000000", "locked": "0.000000" }
+    },
+    {
+      "id": "BA2KPCCL3NAD6MKWL7J3YWVTBKSPPHNSGDKNT3ZXUNCP22T7SP4NTBZL",
+      "type": "balances-state",
+      "attributes": { "available": "2000.000000", "locked": "0.000000" }
+    },
+    {
+      "id": "USD",
+      "type": "assets",
+      "attributes": {
+        "available_for_issuance": "9223372034853.000000",
+        "details": {
+          "logo": { "key": "", "type": "" },
+          "name": "Dollar",
+          "terms": { "key": "", "name": "", "type": "" }
+        },
+        "issued": "2000.000000",
+        "max_issuance_amount": "9223372036853.000000",
+        "pending_issuance": "0.000000",
+        "policies": {
+          "value": 3,
+          "flags": [
+            { "name": "transferable", "value": 1 },
+            { "name": "base_asset", "value": 2 }
+          ]
+        },
+        "pre_issuance_asset_signer": "GBA4EX43M25UPV4WIE6RRMQOFTWXZZRIPFAI5VPY6Z2ZVVXVWZ6NEOOB",
+        "trailing_digits": 6,
+        "type": 0
+      },
+      "relationships": {
+        "owner": {
+          "data": {
+            "id": "GBA4EX43M25UPV4WIE6RRMQOFTWXZZRIPFAI5VPY6Z2ZVVXVWZ6NEOOB",
+            "type": "accounts"
+          }
+        }
+      }
+    },
+    {
+      "id": "BA2KPCCL3NAD6MKWL7J3YWVTBKSPPHNSGDKNT3ZXUNCP22T7SP4NTBZL",
+      "type": "converted-balance-states",
+      "attributes": {
+        "converted_amounts": {
+          "available": "2000000.000000",
+          "locked": "0.000000"
+        },
+        "initial_amounts": { "available": "2000.000000", "locked": "0.000000" },
+        "is_converted": true,
+        "price": "0.000000"
+      },
+      "relationships": {
+        "balance": {
+          "data": {
+            "id": "BA2KPCCL3NAD6MKWL7J3YWVTBKSPPHNSGDKNT3ZXUNCP22T7SP4NTBZL",
+            "type": "balances"
+          }
+        }
+      }
+    },
+    {
+      "id": "BBSPQJQA55V7Q5W2SIHLJA6R6BRFCI3OJRVAJVJSDDAAEVGXYL6GOY6A",
+      "type": "converted-balance-states",
+      "attributes": {
+        "converted_amounts": {
+          "available": "500.000000",
+          "locked": "0.000000"
+        },
+        "initial_amounts": { "available": "1.000000", "locked": "0.000000" },
+        "is_converted": true,
+        "price": "0.000000"
+      },
+      "relationships": {
+        "balance": {
+          "data": {
+            "id": "BBSPQJQA55V7Q5W2SIHLJA6R6BRFCI3OJRVAJVJSDDAAEVGXYL6GOY6A",
+            "type": "balances"
+          }
+        }
+      }
+    },
+    {
+      "id": "BAXHCEXRYZDMV533S6SPEJA3Z43PPAAYL3HDULRWF7SQARETSWH2ZZTE",
+      "type": "balances-state",
+      "attributes": { "available": "33.000000", "locked": "0.000000" }
+    },
+    {
+      "id": "ALI",
+      "type": "assets",
+      "attributes": {
+        "available_for_issuance": "998867.000000",
+        "details": {
+          "logo": {
+            "key": "dpurex4infton4mxfuph6vs75f3bwxro53yfj7qp7ywpztyza6gr3mjthlzdk75dzxr752clyjheztlmq3mnuzxc",
+            "mime_type": "image/png",
+            "name": "com.leomaz.flix_app_icon_1516879405.png",
+            "type": ""
+          },
+          "name": "Alico",
+          "terms": { "key": "", "mime_type": "", "name": "", "type": "" }
+        },
+        "issued": "33.000000",
+        "max_issuance_amount": "1000000.000000",
+        "pending_issuance": "1100.000000",
+        "policies": {
+          "value": 1,
+          "flags": [{ "name": "transferable", "value": 1 }]
+        },
+        "pre_issuance_asset_signer": "GAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHV4",
+        "trailing_digits": 6,
+        "type": 0
+      },
+      "relationships": {
+        "owner": {
+          "data": {
+            "id": "GA62MVLVLG4Y3A4RYDRM4PAUGYCHAEGHTOTMK7N77OIMDKAL7FON4OZA",
+            "type": "accounts"
+          }
+        }
+      }
+    },
+    {
+      "id": "BTC",
+      "type": "assets",
+      "attributes": {
+        "available_for_issuance": "20999999.000000",
+        "details": {},
+        "issued": "1.000000",
+        "max_issuance_amount": "21000000.000000",
+        "pending_issuance": "0.000000",
+        "policies": {
+          "value": 3,
+          "flags": [
+            { "name": "transferable", "value": 1 },
+            { "name": "base_asset", "value": 2 }
+          ]
+        },
+        "pre_issuance_asset_signer": "GBA4EX43M25UPV4WIE6RRMQOFTWXZZRIPFAI5VPY6Z2ZVVXVWZ6NEOOB",
+        "trailing_digits": 6,
+        "type": 0
+      },
+      "relationships": {
+        "owner": {
+          "data": {
+            "id": "GBA4EX43M25UPV4WIE6RRMQOFTWXZZRIPFAI5VPY6Z2ZVVXVWZ6NEOOB",
+            "type": "accounts"
+          }
+        }
+      }
+    },
+    {
+      "id": "BAU2E3CHLQOSL2SGF47UNS2CRTEMABLRE26BZNNTPPO5ZHVUHCXETNSQ",
+      "type": "balances-state",
+      "attributes": { "available": "2501.000000", "locked": "0.000000" }
+    },
+    {
+      "id": "BAU2E3CHLQOSL2SGF47UNS2CRTEMABLRE26BZNNTPPO5ZHVUHCXETNSQ",
+      "type": "balances",
+      "relationships": {
+        "asset": { "data": { "id": "DOGE", "type": "assets" } },
+        "state": {
+          "data": {
+            "id": "BAU2E3CHLQOSL2SGF47UNS2CRTEMABLRE26BZNNTPPO5ZHVUHCXETNSQ",
+            "type": "balances-state"
+          }
+        }
+      }
+    },
+    {
+      "id": "BAXHCEXRYZDMV533S6SPEJA3Z43PPAAYL3HDULRWF7SQARETSWH2ZZTE",
+      "type": "converted-balance-states",
+      "attributes": {
+        "converted_amounts": { "available": "33.000000", "locked": "0.000000" },
+        "initial_amounts": { "available": "33.000000", "locked": "0.000000" },
+        "is_converted": true,
+        "price": "0.000000"
+      },
+      "relationships": {
+        "balance": {
+          "data": {
+            "id": "BAXHCEXRYZDMV533S6SPEJA3Z43PPAAYL3HDULRWF7SQARETSWH2ZZTE",
+            "type": "balances"
+          }
+        }
+      }
+    },
+    {
+      "id": "DOGE",
+      "type": "assets",
+      "attributes": {
+        "available_for_issuance": "9223372034352.000000",
+        "details": {},
+        "issued": "2501.000000",
+        "max_issuance_amount": "9223372036853.000000",
+        "pending_issuance": "0.000000",
+        "policies": {
+          "value": 7,
+          "flags": [
+            { "name": "transferable", "value": 1 },
+            { "name": "base_asset", "value": 2 },
+            { "name": "stats_quote_asset", "value": 4 }
+          ]
+        },
+        "pre_issuance_asset_signer": "GBA4EX43M25UPV4WIE6RRMQOFTWXZZRIPFAI5VPY6Z2ZVVXVWZ6NEOOB",
+        "trailing_digits": 6,
+        "type": 0
+      },
+      "relationships": {
+        "owner": {
+          "data": {
+            "id": "GBA4EX43M25UPV4WIE6RRMQOFTWXZZRIPFAI5VPY6Z2ZVVXVWZ6NEOOB",
+            "type": "accounts"
+          }
+        }
+      }
+    },
+    {
+      "id": "BAU2E3CHLQOSL2SGF47UNS2CRTEMABLRE26BZNNTPPO5ZHVUHCXETNSQ",
+      "type": "converted-balance-states",
+      "attributes": {
+        "converted_amounts": {
+          "available": "2501.000000",
+          "locked": "0.000000"
+        },
+        "initial_amounts": { "available": "2501.000000", "locked": "0.000000" },
+        "is_converted": true,
+        "price": "0.000000"
+      },
+      "relationships": {
+        "balance": {
+          "data": {
+            "id": "BAU2E3CHLQOSL2SGF47UNS2CRTEMABLRE26BZNNTPPO5ZHVUHCXETNSQ",
+            "type": "balances"
+          }
+        }
+      }
+    }
+  ]
+}

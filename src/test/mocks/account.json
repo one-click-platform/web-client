@@ -1,0 +1,24 @@
+{
+  "data": {
+    "id": "GDEDN7XAPJK4GL4AAYV7LJ7NWNKJI7NZAZPKGYHZJGJMCKN2CRTVRAPR",
+    "type": "accounts",
+    "relationships": {
+      "role": {
+        "data": {
+          "id": "2",
+          "type": "account-roles"
+        }
+      },
+      "balances": {},
+      "fees": {
+        "data": [{
+          "id": "2943c436fb783c924526844e9c64670c7e7a47a103009d821eacae9092d10f78",
+          "type": "fees"
+        }]
+      },
+      "limits": {},
+      "external_system_ids": {}
+    }
+  },
+  "included": []
+}
