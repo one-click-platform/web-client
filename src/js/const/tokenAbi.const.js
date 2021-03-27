@@ -124,7 +124,7 @@ export const tokenABI = [
   {
     inputs: [
       { internalType: 'address', name: '_to', type: 'address' },
-      { internalType: 'bytes', name: '_data', type: 'bytes' },
+      { internalType: 'string', name: '_data', type: 'string' },
     ],
     name: 'mint',
     outputs: [],
@@ -223,7 +223,7 @@ export const tokenABI = [
   {
     inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     name: 'tokensData',
-    outputs: [{ internalType: 'bytes', name: '', type: 'bytes' }],
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
   },
