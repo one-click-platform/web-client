@@ -11,3 +11,9 @@ export const amountRange = (from, to) => value =>
   )
 
 export * from 'vuelidate/lib/validators'
+
+export const validateUrl = url => {
+  // eslint-disable-next-line
+  const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)
+  return reg.test(url)
+}
