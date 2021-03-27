@@ -6,7 +6,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-push": "yarn rsc && yarn test",
+      "pre-push": "yarn test",
       "pre-commit": "yarn lint"
     }
   },
