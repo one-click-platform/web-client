@@ -1,4 +1,5 @@
 export const vueRoutes = Object.freeze({
   app: { name: 'app' },
-  assets: { name: 'assets' },
+  tokens: { name: 'tokens' },
+  offers: { name: 'offers' },
 })

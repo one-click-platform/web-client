@@ -31,19 +31,35 @@
       <section class="sidebar__links-section">
         <nav class="sidebar__links-group">
           <router-link
-            key="assets"
+            key="tokens"
             v-ripple
             class="sidebar__link"
             @click.native="closeSidebar"
             tag="a"
-            :to="vueRoutes.assets"
+            :to="vueRoutes.tokens"
           >
             <i
               class="sidebar__link-icon"
               :class="`mdi mdi-book-open`"
             />
             <span>
-              {{ 'pages-names.assets' | globalize }}
+              {{ 'pages-names.tokens' | globalize }}
+            </span>
+          </router-link>
+          <router-link
+            key="offers"
+            v-ripple
+            class="sidebar__link"
+            @click.native="closeSidebar"
+            tag="a"
+            :to="vueRoutes.offers"
+          >
+            <i
+              class="sidebar__link-icon"
+              :class="`mdi mdi-book-open`"
+            />
+            <span>
+              {{ 'pages-names.offers' | globalize }}
             </span>
           </router-link>
         </nav>

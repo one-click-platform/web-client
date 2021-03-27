@@ -4,6 +4,8 @@ import { vueRoutes } from '@/vue-router/routes'
 // import { store, vuexTypes } from '@/vuex'
 
 import AppContent from '@/vue/AppContent'
+import TokensPage from '@/vue/pages/TokensPage'
+import OffersPage from '@/vue/pages/OffersPage'
 
 Vue.use(Router)
 
@@ -22,10 +24,19 @@ const router = new Router({
       beforeEnter: redirectRouteGuard,
       children: [
         {
-          path: '/assets',
-          name: vueRoutes.assets.name,
+          path: '/tokens',
+          name: vueRoutes.tokens.name,
+          component: TokensPage,
           meta: {
-            pageNameTranslationId: 'pages-names.assets',
+            pageNameTranslationId: 'pages-names.tokens',
+          },
+        },
+        {
+          path: '/auction',
+          name: vueRoutes.offers.name,
+          component: OffersPage,
+          meta: {
+            pageNameTranslationId: 'pages-names.offers',
           },
         },
       ],
@@ -37,7 +48,7 @@ export default router
 
 function redirectRouteGuard (to, from, next) {
   if (to.name === vueRoutes.app.name) {
-    next(vueRoutes.assets)
+    next(vueRoutes.tokens)
   } else {
     next()
   }

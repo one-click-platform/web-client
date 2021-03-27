@@ -1,7 +1,7 @@
 <template>
   <router-link
     class="logotype"
-    :to="vueRoutes.assets">
+    :to="vueRoutes.tokens">
     <img
       src="@static/branding/logo.png"
       :alt="config.APP_NAME">

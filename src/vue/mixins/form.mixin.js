@@ -3,22 +3,20 @@ import { validationMixin } from 'vuelidate'
 import FormValidationMixin from '@/vue/mixins/form-validation.mixin'
 import InputField from '@/vue/fields/InputField'
 import SelectField from '@/vue/fields/SelectField'
-import DateField from '@/vue/fields/DateField'
 import TextareaField from '@/vue/fields/TextareaField'
 import TickField from '@/vue/fields/TickField'
 import RadioField from '@/vue/fields/RadioField'
-import MarkdownField from '@/vue/fields/MarkdownField'
 import FormConfirmation from '@/vue/common/FormConfirmation'
+import FileField from '@/vue/fields/FileField'
 
 export default {
   components: {
     InputField,
     SelectField,
-    DateField,
     TextareaField,
     TickField,
     RadioField,
-    MarkdownField,
+    FileField,
     FormConfirmation,
   },
   mixins: [FormValidationMixin, validationMixin],

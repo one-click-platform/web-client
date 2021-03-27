@@ -16,6 +16,7 @@ $content-padding-bottom: 2.5rem;
 $content-padding-left: 5rem;
 $content-padding-right: 6.5rem;
 $content-side-paddings-sm: 2rem;
+$list-item-margin: 2rem;
 
 // z-indexes
 $z-app-navbar: 4;
@@ -152,6 +153,10 @@ $col-switch-field-disabled: $_mediumGray;
 $col-switch-field-enabled: $col-btn;
 $col-switch-field-enabled-border: darken($col-switch-field-enabled, 10%);
 $col-switch-field-disabled-border: darken($col-switch-field-disabled, 10%);
+$file-field-background-color: $col-file-field-background;
+$file-field-border-color: $col-file-field-border;
+$file-field-note-color: $col-field-text-secondary;
+$file-field-drop-bg-color: $col-file-field-drop-bg;
 
 // other colors
 $col-auth-titles-background-fallback: #332f5c;
@@ -208,3 +213,22 @@ $col-background-skeleton-loader: rgba($col-primary, 0.10);
 $col-tooltip-wrapper-msg-bg: rgba($_black, 0.9);
 $col-tooltip-wrapper-msg-text: $_white;
 $col-tooltip-wrapper-border-style: transparent transparent $col-tooltip-wrapper-msg-bg transparent;
+
+// error-message colors:
+$col-error-message-text: rgba($col-error, 0.8);
+$col-error-message-description: rgba($col-error, 0.7);
+$col-error-message-icon-color: rgba($col-error, 0.4);
+
+// sale card colors
+$col-sale-card-background: $_white;
+$col-sale-card-shadow: $col-block-shadow;
+
+// asset card colors
+$col-asset-card-background: $_white;
+$col-asset-card-header-background: $_athensGray;
+$col-asset-card-text-primary: $col-text;
+$col-asset-card-text-secondary: $col-text-secondary;
+
+// asset logo
+$col-asset-logo-dark-background: $_silverChalice;
+$col-asset-logo-dark-text: $_white;

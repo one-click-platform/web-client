@@ -70,7 +70,54 @@
       "percent": "{{value, percent}}"
     },
     "pages-names": {
-      "assets": "Assets"
+      "tokens": "Tokens",
+      "offers": "Auction"
+    },
+    "tokens-page": {
+      "load-failed-msg": "There was an error while loading",
+      "no-list-title": "No tokens here yet",
+      "no-list-msg": "Here will be the list of tokens",
+      "create-btn": "Create token",
+      "create-token-title": "Create token"
+    },
+    "file-field": {
+      "upload-file-title": "Drag a file here or click to browse",
+      "upload-another-file-title": "Drag another file here or click to browse",
+      "no-file-selected-title": "No file selected",
+      "reset-btn-hint": "Remove file",
+      "drop-file-title": "Drop the file here",
+      "selected-file": "Selected file: {{name}}",
+      "file-corrupted-err": "Your file is corrupted",
+      "max-size-exceeded-err": "You cannot upload a file exceeding {{maxSize}} MB",
+      "incorrect-file-type-err": "You cannot upload a {{type}} file. Allowed types: {{allowedTypes}}",
+      "invalid-dimensions-err": "You cannot upload an image with dimensions less than {{minWidth}}x{{minHeight}}",
+      "disabled-msg": "This field is disabled"
+    },
+    "create-token-form": {
+      "name-lbl": "Name",
+      "logo-lbl": "Image",
+      "submit-btn": "Submit",
+      "desc-lbl": "Description",
+      "logo-note": "JPG or PNG, no less than 120x120 px"
+    },
+    "validation": {
+      "field-error_required": "Please fill out this field",
+      "field-error_maxLength": "This field must contain maximum {{length}} symbols"
+    },
+    "offers-page": {
+      "load-failed-msg": "There was an error while loading",
+      "no-list-title": "No offers here yet",
+      "no-list-msg": "Here will be the list of offers",
+      "create-btn": "Create offer",
+      "create-token-title": "Create offer"
+    },
+    "create-offer-form": {
+      "token-lbl": "Token",
+      "min-price-lbl": "Min. price",
+      "price-for-buy-now-lbl": "Price to buy immediately",
+      "submit-btn": "Submit",
+      "desc-lbl": "Description",
+      "step-lbl": "Step"
     }
   }
 }
