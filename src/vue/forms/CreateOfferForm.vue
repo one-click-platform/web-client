@@ -131,6 +131,13 @@
             </div>
           </form>
         </template>
+        <template v-else>
+          <no-data-message
+            icon-name="alert-circle"
+            :title="'create-offer-form.no-data-title' | globalize"
+            :message="'create-offer-form.no-data-message' | globalize"
+          />
+        </template>
       </template>
     </template>
     <template v-else>
@@ -146,6 +153,7 @@ import { Bus } from '@/js/helpers/event-bus'
 import { required, maxLength } from '@validators'
 import moment from 'moment'
 import MetamaskMixin from '@/vue/mixins/metamask.mixin'
+import NoDataMessage from '@/vue/common/NoDataMessage'
 
 const DESCRIPTION_MAX_LENGTH = 500
 
@@ -155,6 +163,7 @@ const EVENTS = {
 
 export default {
   name: 'create-offer-form',
+  components: { NoDataMessage },
   mixins: [FormMixin, MetamaskMixin],
 
   data: _ => ({
@@ -207,21 +216,7 @@ export default {
   methods: {
     async getTokens () {
       try {
-        this.tokens = [{
-          logoUrl: '',
-          name: 'Name',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
-        },
-        {
-          logoUrl: '',
-          name: 'Name',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
-        },
-        {
-          logoUrl: '',
-          name: 'Name',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula gravida ullamcorper. Quisque gravida nec ex ac condimentum. Aenean consectetur libero et augue pellentesque molestie. Sed est tellus, pellentesque ut tortor ut, egestas laoreet est. Nunc pretium nisi at tortor feugiat, nec tristique nulla pellentesque. Mauris condimentum libero tellus, ac tincidunt enim pretium eget. Proin eleifend bibendum sapien, semper venenatis lorem faucibus vitae.',
-        }]
+        this.tokens = []
       } catch (e) {
         ErrorHandler.process(e)
         this.isLoadFailed = true

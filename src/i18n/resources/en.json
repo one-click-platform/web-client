@@ -123,7 +123,9 @@
       "start-date-lbl": "Start date",
       "end-date-lbl": "End date",
       "load-failed-msg": "There was an error while loading",
-      "loading-msg": "Loading…"
+      "loading-msg": "Loading…",
+      "no-data-title": "No tokens",
+      "no-data-message": "Create a token on tokens tab"
     },
     "withdrawal-form": {
       "withdrawal": "Withdrawal",

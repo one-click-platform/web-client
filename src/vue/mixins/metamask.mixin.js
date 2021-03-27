@@ -110,7 +110,10 @@ export default {
     },
 
     async getOffers () {
-      const contract = new window.web3.eth.Contract(auctionABI)
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
       const offerEvents = await contract.getPastEvents('AuctionCreated', { fromBlock: 0, toBlock: 'latest' })
       const offerIds = offerEvents.map(evt => evt.returnValues._id)
 
@@ -121,7 +124,10 @@ export default {
     },
 
     async getOfferDataById (id) {
-      const contract = new window.web3.eth.Contract(auctionABI)
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
       const status = contract.getStatus(id)
       const details = contract.getAuctionInfo(id)
       return { status, ...details }
@@ -139,13 +145,16 @@ export default {
       const startTime = (moment(startDate).unix() / 1000).toFixed()
       const duration = moment(endDate).diff(moment(startDate), 'seconds')
 
-      const contract = new window.web3.eth.Contract(auctionABI)
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
       const account = await this.getAccount()
 
       const auction = contract.methods.createAuction(
-        '0xCebdFCB1df185395c59e4C4Eac88397D22e042Db', // assetAddress
-        tokenId || 1,
-        '0xCebdFCB1df185395c59e4C4Eac88397D22e042Db', // currencyAddress
+        config.TOKEN_ADDRESS,
+        tokenId,
+        config.CURRENCY_ADDRESS,
         minPrice,
         priceForBuyNow,
         startTime,

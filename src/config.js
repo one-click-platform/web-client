@@ -55,6 +55,9 @@ export default Object.assign(
     STORAGE_KEY: 'Store-v2',
 
     API_URL: '',
+    AUCTION_ADDRESS: '0x15B778D464800AfBA771202bbe7c82486edfd9FC',
+    TOKEN_ADDRESS: '',
+    CURRENCY_ADDRESS: '',
   },
   // process.env,
   process.env
