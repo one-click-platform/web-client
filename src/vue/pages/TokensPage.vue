@@ -95,7 +95,7 @@ export default {
     Drawer,
     CreateTokenForm,
     TokenCard,
-    WithdrawalForm
+    WithdrawalForm,
   },
 
   data () {

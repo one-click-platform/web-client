@@ -119,9 +119,11 @@
       "price-for-buy-now-lbl": "Price to buy immediately",
       "submit-btn": "Submit",
       "desc-lbl": "Description",
-      "step-lbl": "Bid increment in minutes",
+      "step-lbl": "Bid increment",
       "start-date-lbl": "Start date",
-      "end-date-lbl": "End date"
+      "end-date-lbl": "End date",
+      "load-failed-msg": "There was an error while loading",
+      "loading-msg": "Loading…"
     },
     "withdrawal-form": {
       "withdrawal": "Withdrawal",
