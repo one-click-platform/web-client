@@ -8,10 +8,10 @@
       <div class="app__form-row">
         <div class="app__form-field">
           <select-field
-            v-model="form.token"
+            v-model="form.tokenId"
             :label="'create-offer-form.token-lbl' | globalize"
             name="create-offer-form-token"
-            @blur="touchField('form.token')"
+            @blur="touchField('form.tokenId')"
             :disabled="formMixin.isDisabled"
           >
             // add options
@@ -42,6 +42,34 @@
             :disabled="formMixin.isDisabled"
             @blur="touchField('form.priceForBuyNow')"
             :error-message="getFieldErrorMessage('form.priceForBuyNow')"
+          />
+        </div>
+      </div>
+
+      <div class="app__form-row">
+        <div class="app__form-field">
+          <date-field
+            v-model="form.startDate"
+            :disabled="formMixin.isDisabled"
+            :placeholder="'create-offer-form.start-date-lbl' | globalize"
+            @blur="touchField('form.startDate')"
+            :error-message="getFieldErrorMessage('form.startDate')"
+            :disable-before="moment().subtract(1, 'days').toISOString()"
+          />
+        </div>
+      </div>
+
+      <div class="app__form-row">
+        <div class="app__form-field">
+          <date-field
+            v-model="form.endDate"
+            :disabled="formMixin.isDisabled"
+            :placeholder="'create-offer-form.end-date-lbl' | globalize"
+            @blur="touchField('form.endDate')"
+            :error-message="getFieldErrorMessage('form.endDate')"
+            :disable-before="moment(form.startDate)
+              .subtract(1, 'days').toISOString()
+            "
           />
         </div>
       </div>
@@ -94,28 +122,31 @@ import FormMixin from '@/vue/mixins/form.mixin'
 import { ErrorHandler } from '@/js/helpers/error-handler'
 import { Bus } from '@/js/helpers/event-bus'
 import { required, maxLength } from '@validators'
+import moment from 'moment'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
 const DESCRIPTION_MAX_LENGTH = 500
 
 export default {
   name: 'create-offer-form',
-  mixins: [FormMixin],
+  mixins: [FormMixin, MetamaskMixin],
 
   data: _ => ({
     form: {
-      token: '',
+      tokenId: '',
       minPrice: '',
       priceForBuyNow: '',
       step: '',
       description: '',
     },
     DESCRIPTION_MAX_LENGTH,
+    moment,
   }),
 
   validations () {
     return {
       form: {
-        token: {
+        tokenId: {
           required,
         },
         minPrice: {
@@ -127,7 +158,10 @@ export default {
         step: {
           required,
         },
-        logo: {
+        startDate: {
+          required,
+        },
+        endDate: {
           required,
         },
         description: {
@@ -142,6 +176,15 @@ export default {
       if (!this.isFormValid()) return
       this.disableForm()
       try {
+        await this.createOffer(
+          this.form.tokenId,
+          this.form.minPrice,
+          this.form.priceForBuyNow,
+          this.form.startDate,
+          this.form.endDate,
+          this.form.step,
+          this.form.description
+        )
         Bus.success('create-offer-form.offer-created-msg')
       } catch (e) {
         ErrorHandler.process(e)

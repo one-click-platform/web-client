@@ -53,7 +53,7 @@
         {{ 'tokens-page.create-token-title' | globalize }}
       </template>
 
-      <create-token-form />
+      <create-token-form @submit="isDrawerShown = false" />
     </drawer>
   </div>
 </template>

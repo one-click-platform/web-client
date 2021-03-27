@@ -118,7 +118,9 @@
       "price-for-buy-now-lbl": "Price to buy immediately",
       "submit-btn": "Submit",
       "desc-lbl": "Description",
-      "step-lbl": "Step"
+      "step-lbl": "Bid increment in minutes",
+      "start-date-lbl": "Start date",
+      "end-date-lbl": "End date"
     },
     "metamask-form": {
       "no-data-title": "Metamask is not installed",
@@ -129,6 +131,12 @@
       "description-msg": "Please note, that if you have other dApp plugins installed, like Dapper, they might conflict with Metamask. If you can't connect Metamask, turn them off and reload the page.",
       "status-title": "Metamask status",
       "skip-metamask": "Skip"
+    },
+    "metamask-mixin": {
+      "not-installed-error-msg": "MetaMask is not installed",
+      "chain-error": "Application supports only Main Ethereum Network. Change it in MetaMask",
+      "wrong-token-id-error": "You are trying to deposit token you don't own",
+      "token-id-out-of-range-error": "Token ID out of minted tokens range"
     }
   }
 }
