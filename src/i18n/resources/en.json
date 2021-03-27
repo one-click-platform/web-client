@@ -160,7 +160,9 @@
     },
     "offer-card": {
       "bid": "Bid",
-      "amount": "Amount"
+      "by-now": "By now",
+      "amount": "Amount",
+      "details": "Details"
     }
   }
 }

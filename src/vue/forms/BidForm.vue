@@ -23,7 +23,7 @@
         :disabled="formMixin.isDisabled"
         @click="$emit(EVENTS.cancel)"
       >
-        <i class="mdi mdi-close file-field__reset-icon" />
+        <i class="mdi mdi-close" />
       </button>
       <button
         v-ripple

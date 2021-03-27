@@ -3,6 +3,7 @@
     id="app"
     v-if="isAppInitialized"
     :key="lang">
+    <timer v-if="false" />
     <template v-if="isLoadedMetamask">
       <div
         v-if="!isMetamaskConnected"
@@ -41,6 +42,7 @@
 <script>
 import Sidebar from '@/vue/navigation/Sidebar.vue'
 import MetamaskForm from '@/vue/forms/MetamaskForm'
+import Timer from '@/vue/common/Timer'
 
 import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
@@ -58,6 +60,7 @@ export default {
   components: {
     Sidebar,
     MetamaskForm,
+    Timer,
   },
   mixins: [MetamaskMixin],
   data: () => ({
