@@ -19,16 +19,13 @@
       </div>
       <div class="app__form-row">
         <div class="app__form-field">
-          <file-field
-            name="create-token-form-logo"
-            v-model="form.logo"
-            :note="'create-token-form.logo-note' | globalize"
-            :label="'create-token-form.logo-lbl' | globalize"
-            :min-width="120"
-            :min-height="120"
-            :max-size="LOGO_MAX_SIZE"
+          <input-field
+            v-model="form.logoUrl"
+            @blur="touchField('form.logoUrl')"
+            name="create-token-form-logoUrl"
             :disabled="formMixin.isDisabled"
-            @blur="touchField('form.logo')"
+            :label="'create-token-form.logo-url-lbl' | globalize"
+            :error-message="getFieldErrorMessage('form.logoUrl')"
           />
         </div>
       </div>
@@ -84,7 +81,7 @@ export default {
     form: {
       name: '',
       description: '',
-      logo: null,
+      logoUrl: '',
     },
     LOGO_MAX_SIZE,
     DESCRIPTION_MAX_LENGTH,
@@ -94,6 +91,9 @@ export default {
     return {
       form: {
         name: {
+          required,
+        },
+        logoUrl: {
           required,
         },
         description: {
@@ -112,6 +112,7 @@ export default {
         await this.createToken({
           name: this.form.name,
           description: this.form.description,
+          logoUrl: this.form.logoUrl,
         })
         Bus.success('create-token-form.offer-created-msg')
         this.$emit(EVENTS.submit)

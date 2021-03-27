@@ -97,7 +97,7 @@
     },
     "create-token-form": {
       "name-lbl": "Name",
-      "logo-lbl": "Image",
+      "logo-url-lbl": "Image URL",
       "submit-btn": "Submit",
       "desc-lbl": "Description",
       "logo-note": "JPG or PNG, no less than 120x120 px",
