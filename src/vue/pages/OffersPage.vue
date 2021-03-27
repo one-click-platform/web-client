@@ -1,7 +1,6 @@
 <template>
   <div class="offers-page">
     <top-bar>
-      <template slot="main" />
       <template
         slot="extra"
       >

@@ -1,7 +1,9 @@
 <template>
   <div class="top-bar">
     <div class="top-bar__main">
-      <slot name="main" />
+      <h2 class="navbar__title">
+        {{ pageNameTranslationId | globalize }}
+      </h2>
     </div>
     <div class="top-bar__extra">
       <slot name="extra" />
@@ -32,6 +34,17 @@
  */
 export default {
   name: 'top-bar',
+  computed: {
+    pageNameTranslationId () {
+      const pageNamePath = this.$route.matched
+        .find(path => path.meta.pageNameTranslationId)
+      if (pageNamePath) {
+        return pageNamePath.meta.pageNameTranslationId
+      } else {
+        return ''
+      }
+    },
+  },
 }
 </script>
 
@@ -111,6 +124,18 @@ export default {
   @include respond-to($sidebar-hide-bp) {
     margin-top: 1.4rem;
     margin-left: 1.2rem;
+  }
+}
+
+.navbar__title {
+  color: $col-text-page-heading;
+  font-size: 4rem;
+  line-height: 1.5;
+  font-weight: 400;
+  min-width: 15rem;
+
+  @include respond-to-custom($sidebar-hide-bp) {
+    font-size: 3.2rem;
   }
 }
 </style>

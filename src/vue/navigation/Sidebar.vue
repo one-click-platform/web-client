@@ -63,7 +63,9 @@
         </nav>
       </section>
 
-      <section class="sidebar__footer-section" />
+      <section class="sidebar__footer-section">
+        {{ address }}
+      </section>
     </aside>
   </div>
 </template>
@@ -74,6 +76,7 @@ import Logo from '@/vue/assets/Logo'
 import { vueRoutes } from '@/vue-router/routes'
 
 import config from '@/config'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
 const EVENTS = {
   open: 'open',
@@ -87,13 +90,18 @@ export default {
     Logo,
   },
 
+  mixins: [MetamaskMixin],
   data: () => ({
     isOpened: false,
     config,
     vueRoutes,
+    address: '',
   }),
 
   computed: {},
+  async created () {
+    this.address = await this.getAccount()
+  },
 
   methods: {
     openSidebar () {
@@ -121,8 +129,7 @@ $content-item-right-padding: 2.4rem;
 .sidebar {
   position: relative;
   background-color: $col-sidebar-background;
-  min-height: 100%;
-  border-right: 0.1rem solid $color-border;
+  border-bottom: 0.1rem solid $color-border;
 }
 
 .sidebar__backdrop {
@@ -182,14 +189,13 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__aside {
-  width: $sidebar-width;
+  width: 100%;
   min-height: 100%;
   z-index: $z-sidebar;
   list-style: none;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  visibility: visible;
+  align-items: center;
+  padding: 2rem 6.5rem 2rem 5rem;
 
   @include respond-to-custom($sidebar-hide-bp) {
     opacity: 1;
@@ -216,8 +222,6 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__logo-section {
-  padding: 3.3rem $content-item-right-padding 0 $content-item-left-padding;
-
   @include respond-to-custom($sidebar-hide-bp) {
     .sidebar__aside--closed & {
       display: none;
@@ -244,8 +248,8 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__links-section {
-  margin-top: 3.6rem;
-  flex: 1;
+  width: 100%;
+  display: flex;
 
   @include respond-to-custom($sidebar-hide-bp) {
     .sidebar__aside--closed & {
@@ -255,6 +259,7 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__links-group {
+  display: flex;
   margin-bottom: 4rem;
 
   &:last-child {
@@ -305,8 +310,6 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__footer-section {
-  padding-top: 2rem;
-
   @include respond-to-custom($sidebar-hide-bp) {
     .sidebar__aside--closed & {
       display: none;
