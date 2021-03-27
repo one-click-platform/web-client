@@ -132,9 +132,8 @@
     },
     "withdrawal-form": {
       "withdrawal": "Withdrawal",
-      "asset": "Asset",
+      "asset": "Token",
       "balance": "Balance: {{balance, money}}",
-      "amount": "Amount",
       "withdraw-success": "Withdrawal request successfully created",
       "failed-load-fees": "Failed to load fees. Try again later",
       "no-assets-heading": "Ops!",

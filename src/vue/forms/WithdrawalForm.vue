@@ -26,19 +26,6 @@
             </div>
           </div>
 
-          <div class="app__form-row withdrawal__form-row">
-            <input-field
-              class="app__form-field"
-              v-model="form.amount"
-              :step="1"
-              type="number"
-              name="withdrawal-amount"
-              :label="'withdrawal-form.amount' | globalize"
-              :disabled="formMixin.isDisabled"
-              is-max-button-shown
-            />
-          </div>
-
           <div class="app__form-actions">
             <button
               v-ripple
@@ -97,7 +84,6 @@ export default {
     assets: [],
     form: {
       asset: '',
-      amount: '',
     },
     vueRoutes,
   }),
@@ -105,7 +91,6 @@ export default {
     return {
       form: {
         asset: { required },
-        amount: { required },
       },
     }
   },
