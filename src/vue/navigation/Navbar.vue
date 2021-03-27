@@ -12,7 +12,7 @@
     </div>
 
     <div class="navbar__passport-wrp">
-      TEST
+      {{ address }}
     </div>
   </nav>
 </template>
@@ -22,11 +22,14 @@ import config from '@/config'
 
 import { mapGetters } from 'vuex'
 import { vuexTypes } from '@/vuex'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
 export default {
   name: 'navbar',
+  mixins: [MetamaskMixin],
   data: _ => ({
     config,
+    address: '',
   }),
   computed: {
     ...mapGetters([
@@ -41,6 +44,9 @@ export default {
         return ''
       }
     },
+  },
+  async created () {
+    this.address = await this.getAccount()
   },
 }
 </script>

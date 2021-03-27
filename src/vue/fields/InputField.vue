@@ -294,7 +294,7 @@ $pwd-toggle-btn-width: 3.2rem;
   }
 
   .input-field--monospaced > & {
-    font-family: 'SourceCodePro', 'Courier', monospace;
+    font-family: 'Avenir', 'Helvetica', monospace;
     font-weight: 500;
   }
 

@@ -77,7 +77,7 @@ export default {
     max-width: 100%;
     overflow: hidden;
     border-radius: 0.4rem;
-    box-shadow: 0 0.5rem 1rem 0 $col-sale-card-shadow;
+    border: 0.1rem solid $color-border;
     background-color: $col-sale-card-background;
     min-width: 0;
   }
@@ -101,7 +101,7 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 2rem;
+    font-size: 2.4rem;
     line-height: $header-line-height;
     font-weight: 500;
     color: $col-text;
@@ -166,8 +166,8 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 1rem;
-    height: 8.4rem;
+    padding: 3rem 2rem 1.6rem;
+    height: 8.945rem;
   }
 
 </style>

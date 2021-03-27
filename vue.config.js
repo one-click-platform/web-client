@@ -69,10 +69,6 @@ module.exports = {
           to: 'static/branding/favicon.ico',
         },
         {
-          from: path.resolve(__dirname, resolveApp('static/branding/logo.png')),
-          to: 'static/branding/logo.png',
-        },
-        {
           from: path.resolve(__dirname, resolveApp('static/env.js')),
           to: 'static/env.js',
         },

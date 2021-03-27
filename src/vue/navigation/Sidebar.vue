@@ -32,7 +32,6 @@
         <nav class="sidebar__links-group">
           <router-link
             key="tokens"
-            v-ripple
             class="sidebar__link"
             @click.native="closeSidebar"
             tag="a"
@@ -40,7 +39,7 @@
           >
             <i
               class="sidebar__link-icon"
-              :class="`mdi mdi-book-open`"
+              :class="`mdi mdi-coins`"
             />
             <span>
               {{ 'pages-names.tokens' | globalize }}
@@ -48,7 +47,6 @@
           </router-link>
           <router-link
             key="offers"
-            v-ripple
             class="sidebar__link"
             @click.native="closeSidebar"
             tag="a"
@@ -56,7 +54,7 @@
           >
             <i
               class="sidebar__link-icon"
-              :class="`mdi mdi-book-open`"
+              :class="`mdi mdi-periodic-table`"
             />
             <span>
               {{ 'pages-names.offers' | globalize }}
@@ -65,9 +63,7 @@
         </nav>
       </section>
 
-      <section class="sidebar__footer-section">
-        app-footer
-      </section>
+      <section class="sidebar__footer-section" />
     </aside>
   </div>
 </template>
@@ -125,8 +121,8 @@ $content-item-right-padding: 2.4rem;
 .sidebar {
   position: relative;
   background-color: $col-sidebar-background;
-  box-shadow: inset -1rem -1rem 2rem 0 rgba(0, 0, 0, 0.03);
   min-height: 100%;
+  border-right: 0.1rem solid $color-border;
 }
 
 .sidebar__backdrop {
@@ -178,7 +174,7 @@ $content-item-right-padding: 2.4rem;
 .sidebar__burger-btn-icon {
   display: flex;
   justify-content: center;
-  font-size: 2.4rem;
+  font-size: 2.6rem;
 }
 
 .sidebar__burger-btn--sidebar-active {
@@ -220,7 +216,7 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__logo-section {
-  padding: 4rem $content-item-right-padding 0 $content-item-left-padding;
+  padding: 3.3rem $content-item-right-padding 0 $content-item-left-padding;
 
   @include respond-to-custom($sidebar-hide-bp) {
     .sidebar__aside--closed & {
@@ -232,7 +228,6 @@ $content-item-right-padding: 2.4rem;
 .sidebar__logo {
   max-width: 9.5rem;
   width: 100%;
-  height: 3.1rem;
   display: block;
 }
 
@@ -283,6 +278,14 @@ $content-item-right-padding: 2.4rem;
   cursor: pointer;
   color: $col-sidebar-text;
   text-decoration: none;
+
+  span {
+    font-size: 2.2rem;
+  }
+
+  &:hover {
+    color: $col-sidebar-active-elem-text;
+  }
 }
 
 .sidebar__link.router-link-active {
@@ -292,9 +295,9 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__link-icon {
-  margin-right: 1.6rem;
+  margin-right: 2rem;
   color: $col-sidebar-text;
-  font-size: 2.4rem;
+  font-size: 2.6rem;
 
   .router-link-active & {
     color: $col-sidebar-active-elem-text;

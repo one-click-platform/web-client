@@ -3,38 +3,40 @@
     id="app"
     v-if="isAppInitialized"
     :key="lang">
-    <div
-      v-if="!isMetamaskConnected"
-      class="app__metamask-form-wrp">
-      <metamask-form />
-    </div>
-    <template v-else>
-      <template v-if="isNavigationRendered">
-        <div
-          class="app__container"
-          :class="{'app__container--fixed': isSidebarOpen}"
-        >
-          <sidebar
-            @open="isSidebarOpen = true"
-            @close="isSidebarOpen = false"
-          />
-
+    <template v-if="isLoadedMetamask">
+      <div
+        v-if="!isMetamaskConnected"
+        class="app__metamask-form-wrp">
+        <metamask-form />
+      </div>
+      <template v-else>
+        <template v-if="isNavigationRendered">
           <div
-            class="app__main-content"
+            class="app__container"
             :class="{'app__container--fixed': isSidebarOpen}"
           >
-            <div class="app__navbar">
-              <navbar />
-            </div>
+            <sidebar
+              @open="isSidebarOpen = true"
+              @close="isSidebarOpen = false"
+            />
 
-            <div class="app__main">
-              <router-view />
+            <div
+              class="app__main-content"
+              :class="{'app__container--fixed': isSidebarOpen}"
+            >
+              <div class="app__navbar">
+                <navbar />
+              </div>
+
+              <div class="app__main">
+                <router-view />
+              </div>
             </div>
           </div>
-        </div>
-      </template>
-      <template v-else>
-        <router-view />
+        </template>
+        <template v-else>
+          <router-view />
+        </template>
       </template>
     </template>
   </div>
