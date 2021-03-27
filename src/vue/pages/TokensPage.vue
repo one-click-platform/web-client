@@ -82,6 +82,8 @@ import Drawer from '@/vue/common/Drawer'
 import CreateTokenForm from '@/vue/forms/CreateTokenForm.vue'
 import TokenCard from '@/vue/pages/Tokens/TokenCard'
 import WithdrawalForm from '@/vue/forms/WithdrawalForm'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
+import { ErrorHandler } from '@/js/helpers/error-handler'
 
 export default {
   name: 'tokens-page',
@@ -97,6 +99,7 @@ export default {
     TokenCard,
     WithdrawalForm,
   },
+  mixins: [MetamaskMixin],
 
   data () {
     return {
@@ -107,7 +110,13 @@ export default {
       isWithdrawalDrawerShown: false,
     }
   },
-  created () {
+  async created () {
+    try {
+      this.list = await this.getTokens()
+    } catch (e) {
+      ErrorHandler.processWithoutFeedback(e)
+      this.isLoadFailed = true
+    }
     this.isLoaded = true
   },
   methods: {

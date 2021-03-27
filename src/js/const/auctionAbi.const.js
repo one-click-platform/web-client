@@ -100,13 +100,13 @@ export const auctionABI = [
       {
         indexed: true,
         internalType: 'address',
-        name: '_previousOwner',
+        name: 'previousOwner',
         type: 'address',
       },
       {
         indexed: true,
         internalType: 'address',
-        name: '_newOwner',
+        name: 'newOwner',
         type: 'address',
       },
     ],
@@ -231,13 +231,6 @@ export const auctionABI = [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'getOwner',
-    outputs: [{ internalType: 'address', name: '', type: 'address' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [{ internalType: 'uint256', name: '_auctionId', type: 'uint256' }],
     name: 'getRaisingBid',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
@@ -255,13 +248,20 @@ export const auctionABI = [
   },
   {
     inputs: [],
+    name: 'owner',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
     name: 'renounceOwnership',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'address', name: '_newOwner', type: 'address' }],
+    inputs: [{ internalType: 'address', name: 'newOwner', type: 'address' }],
     name: 'transferOwnership',
     outputs: [],
     stateMutability: 'nonpayable',

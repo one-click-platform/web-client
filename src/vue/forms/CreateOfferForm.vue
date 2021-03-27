@@ -209,20 +209,17 @@ export default {
     }
   },
 
-  created () {
-    this.getTokens()
+  async created () {
+    try {
+      this.tokens = await this.getTokens()
+    } catch (e) {
+      ErrorHandler.process(e)
+      this.isLoadFailed = true
+    }
+    this.isLoaded = true
   },
 
   methods: {
-    async getTokens () {
-      try {
-        this.tokens = []
-      } catch (e) {
-        ErrorHandler.process(e)
-        this.isLoadFailed = true
-      }
-      this.isLoaded = true
-    },
     async submit () {
       if (!this.isFormValid()) return
       this.disableForm()

@@ -5,6 +5,7 @@ import { Bus } from '@/js/helpers/event-bus'
 import config from '@/config'
 import moment from 'moment'
 import { auctionABI } from '@/js/const/auctionAbi.const.js'
+import { tokenABI } from '@/js/const/tokenAbi.const.js'
 
 const MAIN_CHAIN_ID = '0x1'
 const MAIN_NETWORK_TYPE = 'main'
@@ -94,19 +95,30 @@ export default {
     },
 
     async createToken () {
-      const contract = new window.web3.eth.Contract('ABI')
+      const contract = new window.web3.eth.Contract(
+        tokenABI,
+        config.TOKEN_ADDRESS
+      )
       const account = await this.getAccount()
-
-      const t = contract.methods.createToken()
+      const mint = contract.methods.mint(account)
 
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
-        t.send({ from: account })
+        mint.send({ from: account })
           .on('transactionHash', async () => {
             resolve()
           })
           .on('error', err => reject(err))
       })
+    },
+
+    async getTokens () {
+      const contract = new window.web3.eth.Contract(
+        tokenABI,
+        config.TOKEN_ADDRESS
+      )
+
+      return contract
     },
 
     async getOffers () {
