@@ -165,7 +165,7 @@ export default {
       const offers = await Promise.all(
         offerIds.map(id => this.getOfferDataById(id))
       )
-      return offers.filter(i => i.status === 2) // 2 active status
+      return offers
     },
 
     async getOfferDataById (id) {

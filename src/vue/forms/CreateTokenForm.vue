@@ -64,7 +64,7 @@ import FormMixin from '@/vue/mixins/form.mixin'
 import MetamaskMixix from '@/vue/mixins/metamask.mixin'
 import { ErrorHandler } from '@/js/helpers/error-handler'
 import { Bus } from '@/js/helpers/event-bus'
-import { required, maxLength } from '@validators'
+import { required, maxLength, validateUrl } from '@validators'
 
 const LOGO_MAX_SIZE = 5
 const DESCRIPTION_MAX_LENGTH = 500
@@ -95,6 +95,7 @@ export default {
         },
         logoUrl: {
           required,
+          validateUrl,
         },
         description: {
           required,

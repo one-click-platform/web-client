@@ -105,7 +105,8 @@
     },
     "validation": {
       "field-error_required": "Please fill out this field",
-      "field-error_maxLength": "This field must contain maximum {{length}} symbols"
+      "field-error_maxLength": "This field must contain maximum {{length}} symbols",
+      "field-error_validateUrl": "This field should be a valid website URL"
     },
     "offers-page": {
       "load-failed-msg": "There was an error while loading",
@@ -131,9 +132,8 @@
     },
     "withdrawal-form": {
       "withdrawal": "Withdrawal",
-      "asset": "Asset",
+      "asset": "Token",
       "balance": "Balance: {{balance, money}}",
-      "amount": "Amount",
       "withdraw-success": "Withdrawal request successfully created",
       "failed-load-fees": "Failed to load fees. Try again later",
       "no-assets-heading": "Ops!",
