@@ -36,11 +36,13 @@
         </template>
       </template>
     </template>
+    <status-message />
   </div>
 </template>
 
 <script>
 import Sidebar from '@/vue/navigation/Sidebar.vue'
+import StatusMessage from '@/vue/common/StatusMessage'
 import MetamaskForm from '@/vue/forms/MetamaskForm'
 import Timer from '@/vue/common/Timer'
 
@@ -61,6 +63,7 @@ export default {
     Sidebar,
     MetamaskForm,
     Timer,
+    StatusMessage,
   },
   mixins: [MetamaskMixin],
   data: () => ({

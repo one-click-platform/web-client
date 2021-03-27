@@ -158,6 +158,16 @@
       "wrong-token-id-error": "You are trying to deposit token you don't own",
       "token-id-out-of-range-error": "Token ID out of minted tokens range"
     },
+    "status-message": {
+      "title_warning": "Warning",
+      "title_success": "Success",
+      "title_error": "Error",
+      "title_info": "Notification",
+      "default-message_warning": "Something you are doing is not recommended",
+      "default-message_success": "Action successful",
+      "default-message_error": "Something went wrong",
+      "default-message_info": "Something is happening. Just want you to know that"
+    },
     "offer-card": {
       "bid": "Bid",
       "by-now": "By now",

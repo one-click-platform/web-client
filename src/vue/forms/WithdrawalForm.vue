@@ -127,7 +127,7 @@ export default {
           code: '1NameName',
         },
       ]
-      // this.isLoaded = true
+      this.isLoaded = true
     } catch (error) {
       this.isFailed = true
       ErrorHandler.processWithoutFeedback(error)
