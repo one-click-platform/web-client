@@ -5,7 +5,7 @@ import { Bus } from '@/js/helpers/event-bus'
 import config from '@/config'
 import moment from 'moment'
 import { auctionABI } from '@/js/const/auctionAbi.const.js'
-import { tokenABI } from '@/js/const/tokenAbi.const.js'
+import { tokenABI } from '@/js/const/erc721.const.js'
 
 const MAIN_CHAIN_ID = '0x1'
 const MAIN_NETWORK_TYPE = 'main'
@@ -27,6 +27,15 @@ export default {
   },
 
   methods: {
+    async approve721 (account, auctionAddress, tokenId) {
+      const contract = new window.web3.eth.Contract(
+        tokenABI,
+        config.TOKEN_ADDRESS
+      )
+      await contract.methods.approve(auctionAddress, tokenId).send({
+        from: account,
+      })
+    },
     async connectMetamask () {
       await this.enableMetamask()
       if (this.isMetamaskConnected || !this.isMetamaskEnabled) return
@@ -162,6 +171,8 @@ export default {
         config.AUCTION_ADDRESS
       )
       const account = await this.getAccount()
+
+      await this.approve721(account, config.AUCTION_ADDRESS, tokenId)
 
       const auction = contract.methods.createAuction(
         config.TOKEN_ADDRESS,
