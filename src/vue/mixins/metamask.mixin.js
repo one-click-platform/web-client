@@ -4,6 +4,7 @@ import { ErrorHandler } from '@/js/helpers/error-handler'
 import { Bus } from '@/js/helpers/event-bus'
 import config from '@/config'
 import moment from 'moment'
+import { auctionABI } from '@/js/const/auctionAbi.const.js'
 
 const MAIN_CHAIN_ID = '0x1'
 const MAIN_NETWORK_TYPE = 'main'
@@ -106,6 +107,24 @@ export default {
       })
     },
 
+    async getOffers () {
+      const contract = new window.web3.eth.Contract(auctionABI)
+      const offerEvents = await contract.getPastEvents('AuctionCreated', { fromBlock: 0, toBlock: 'latest' })
+      const offerIds = offerEvents.map(evt => evt.returnValues._id)
+
+      const offers = await Promise.all(
+        offerIds.map(id => this.getOfferDataById(id))
+      )
+      return offers.filter(i => i.status === 2) // 2 active status
+    },
+
+    async getOfferDataById (id) {
+      const contract = new window.web3.eth.Contract(auctionABI)
+      const status = contract.getStatus(id)
+      const details = contract.getAuctionInfo(id)
+      return { status, ...details }
+    },
+
     async createOffer (
       tokenId,
       minPrice,
@@ -115,28 +134,28 @@ export default {
       step,
       description
     ) {
-      const startTime = moment(startDate).unix() / 1000
+      const startTime = (moment(startDate).unix() / 1000).toFixed()
       const duration = moment(endDate).diff(moment(startDate), 'seconds')
 
-      const contract = new window.web3.eth.Contract('ABI')
+      const contract = new window.web3.eth.Contract(auctionABI)
       const account = await this.getAccount()
 
-      const offer = contract.methods.createOffer({
-        assetAddress: '',
-        assetId: tokenId,
-        currencyAddress: '',
-        startPrice: minPrice,
-        buyNowPrice: priceForBuyNow,
+      const auction = contract.methods.createAuction(
+        '0xCebdFCB1df185395c59e4C4Eac88397D22e042Db', // assetAddress
+        tokenId || 1,
+        '0xCebdFCB1df185395c59e4C4Eac88397D22e042Db', // currencyAddress
+        minPrice,
+        priceForBuyNow,
         startTime,
         duration,
-        durationIncrement: 30,
-        bidIncrement: step,
+        30, // durationIncrement seconds
+        step, // bidIncrement
         description,
-      })
+      )
 
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
-        offer.send({ from: account })
+        auction.send({ from: account })
           .on('transactionHash', async () => {
             resolve()
           })
