@@ -22,6 +22,18 @@
         </template>
         <template v-else>
           <button
+            v-ripple
+            class="app__button-flat"
+            @click="isInfoOpened = true"
+          >
+            <i class="mdi mdi-information-outline" />
+          </button>
+          <button
+            class="app__button-flat"
+          >
+            {{ 'offer-card.by-now' | globalize }}
+          </button>
+          <button
             class="app__button-flat"
             @click="isBidOpened = true"
           >
@@ -30,6 +42,26 @@
         </template>
       </template>
     </card>
+
+    <drawer :is-shown.sync="isInfoOpened">
+      <template slot="heading">
+        {{ 'offer-card.details' | globalize }}
+      </template>
+      <div class="app__table asset-attributes-viewer__table-wrp">
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                {{ 'assets.asset-type' | globalize }}
+              </td>
+              <td>
+                {{ 'assets.does-not-require-verification-title' | globalize }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </drawer>
   </div>
 </template>
 
@@ -37,6 +69,7 @@
 import Card from '@/vue/common/Card'
 import CardLogo from '@/vue/common/CardLogo'
 import BidForm from '@/vue/forms/BidForm'
+import Drawer from '@/vue/common/Drawer'
 
 const EVENTS = {
   bid: 'bid',
@@ -48,6 +81,7 @@ export default {
     Card,
     CardLogo,
     BidForm,
+    Drawer,
   },
 
   props: {
@@ -60,6 +94,7 @@ export default {
     return {
       EVENTS,
       isBidOpened: false,
+      isInfoOpened: false,
     }
   },
 }
