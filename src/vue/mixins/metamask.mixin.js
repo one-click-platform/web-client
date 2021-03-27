@@ -4,6 +4,7 @@ import { ErrorHandler } from '@/js/helpers/error-handler'
 import { Bus } from '@/js/helpers/event-bus'
 import config from '@/config'
 import moment from 'moment'
+import BigNumber from 'bignumber.js'
 import { auctionABI } from '@/js/const/auctionAbi.const.js'
 import { tokenABI } from '@/js/const/erc721.const.js'
 
@@ -27,6 +28,22 @@ export default {
   },
 
   methods: {
+    BN (value) {
+      return new BigNumber(value)
+    },
+    toWei (value) {
+      const amount = this.BN(value)
+      const a = this.BN(10 ** 18)
+      return amount.multipliedBy(a)
+        .toFixed()
+    },
+
+    fromWei (value) {
+      const amount = this.BN(value)
+      const a = this.BN(10 ** 18)
+      return amount.dividedBy(a)
+        .toFixed()
+    },
     async approve721 (account, auctionAddress, tokenId) {
       const contract = new window.web3.eth.Contract(
         tokenABI,
@@ -156,8 +173,8 @@ export default {
         auctionABI,
         config.AUCTION_ADDRESS
       )
-      const status = contract.getStatus(id)
-      const details = contract.getAuctionInfo(id)
+      const status = await contract.methods.getStatus(id).call()
+      const details = await contract.methods.getAuctionInfo(id).call()
       return { status, ...details }
     },
 
@@ -185,12 +202,12 @@ export default {
         config.TOKEN_ADDRESS,
         tokenId,
         config.CURRENCY_ADDRESS,
-        minPrice,
-        priceForBuyNow,
+        this.toWei(minPrice),
+        this.toWei(priceForBuyNow),
         startTime,
         duration,
         30, // durationIncrement seconds
-        step, // bidIncrement
+        this.BN(1e+16).multipliedBy(step), // bidIncrement
         description,
       )
 

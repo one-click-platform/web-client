@@ -120,7 +120,7 @@
       "price-for-buy-now-lbl": "Price to buy immediately in ETH",
       "submit-btn": "Submit",
       "desc-lbl": "Description",
-      "step-lbl": "Bid increment in ETH",
+      "step-lbl": "Percent increment step",
       "start-date-lbl": "Start date",
       "end-date-lbl": "End date",
       "load-failed-msg": "There was an error while loading",
