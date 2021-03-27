@@ -45,6 +45,7 @@ export default {
     justify-content: center;
     align-items: center;
     height: 11rem;
+    border-bottom: 0.1rem solid $color-border;
     background-color: $col-asset-card-header-background;
   }
 

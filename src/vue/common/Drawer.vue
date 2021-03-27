@@ -109,7 +109,7 @@ $media-small: 460px;
   max-width: 100%;
   min-height: 100%;
   height: 100%;
-  box-shadow: 0 1rem 2rem 0 $col-drawer-backdrop-bg;
+  border-left: 0.1rem solid $color-border;
   display: flex;
   flex-direction: column;
 }
@@ -119,6 +119,7 @@ $media-small: 460px;
   background-color: $col-drawer-head-bg;
   display: flex;
   align-items: center;
+  border-bottom: 0.1rem solid $color-border;
   justify-content: space-between;
 
   @include respond-to-height($media-small) {

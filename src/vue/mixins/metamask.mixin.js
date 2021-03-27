@@ -15,12 +15,14 @@ export default {
     isMetamaskConnected: false,
     isMetamaskEnabled: false,
     isMainNet: false,
+    isLoadedMetamask: false,
   }),
 
   computed: {},
 
   async created () {
     await this.enableMetamask()
+    this.isLoadedMetamask = true
   },
 
   methods: {

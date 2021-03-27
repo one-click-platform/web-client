@@ -1,4 +1,4 @@
-$col-primary: #ee9601;
+$col-primary: #1a1a1a;
 
 // auth
 $col-auth-titles-background-light: darken($col-primary, 5%);
@@ -8,13 +8,13 @@ $col-text-auth-title-small: rgba(#ffffff, 0.65);
 $col-text-auth-version: darken($col-primary, 53%);
 
 // sidebar
-$col-sidebar-background: #e9eaed;
-$col-sidebar-text: rgba($col-primary, 0.7);
+$col-sidebar-background: #ffffff;
+$col-sidebar-text: #b2b2b2;
 $col-footer-text: $col-primary;
-$col-sidebar-active-elem-text: rgba($col-sidebar-text, 1);
-$col-sidebar-active-elem-background: #f2f2f4;
+$col-sidebar-active-elem-text: $col-primary;
+$col-sidebar-active-elem-background: #ffffff;
 
-$col-btn: #057c48;
+$col-btn: $col-primary;
 $col-button-disabled: rgba($col-btn, 0.7);
 $col-text-page-heading: $col-primary;
 
@@ -24,9 +24,11 @@ $col-field-txt: $col-primary;
 $col-link: $col-btn;
 $col-chart: $col-text;
 $col-chart-text: $col-chart;
-$col-app-content-background: #f6f8fb;
+$col-app-content-background: #ffffff;
 $col-top-bar-background: #ffffff;
 
 $col-text-secondary: darken($col-primary, 33%);
 $col-btn-txt: #ffffff;
 $col-message-box-text: #ffffff;
+
+$color-border: rgba(0, 0, 0, 0.125);

@@ -1,6 +1,6 @@
 .app__init {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
   width: 80%;
@@ -28,7 +28,9 @@
 }
 .app__init-logo {
   /* magic number, height of logo picture */
-  height: 106px;
+  font-size: 170px;
+  display: flex;
+  align-items: center;
 }
 @keyframes app__init-blink {
   0% { opacity: 0; }

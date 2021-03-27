@@ -2,9 +2,7 @@
   <router-link
     class="logotype"
     :to="vueRoutes.tokens">
-    <img
-      src="@static/branding/logo.png"
-      :alt="config.APP_NAME">
+    4+2
   </router-link>
 </template>
 
@@ -22,8 +20,13 @@ export default {
 </script>
 
 <style lang="scss">
-.logotype img {
-  max-height: 4.5rem;
-  height: inherit;
+@import '@/scss/variables';
+
+.logotype {
+  font-size: 4rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: $col-primary;
+  text-decoration: none;
 }
 </style>

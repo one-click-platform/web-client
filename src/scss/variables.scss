@@ -79,7 +79,7 @@ $col-danger: $_darkRed;
 // global colors
 $col-border: $_ghostWhite;
 $col-block-bg: $_white;
-$col-app-background: $_gray;
+$col-app-background: #ffffff;
 
 // text colors:
 $col-heading: $col-text;
@@ -122,7 +122,7 @@ $col-status-close-btn-hover: rgba(0, 0, 0, 0.1);
 
 // drawer colors:
 $col-drawer-bg: $col-block-bg;
-$col-drawer-backdrop-bg: rgba(0, 0, 0, 0.1);
+$col-drawer-backdrop-bg: rgba(248, 248, 248, 0.9);
 $col-drawer-head-bg: $_athensGray;
 $col-drawer-head-text: $col-text-page-heading;
 

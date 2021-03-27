@@ -32,7 +32,6 @@
         <nav class="sidebar__links-group">
           <router-link
             key="tokens"
-            v-ripple
             class="sidebar__link"
             @click.native="closeSidebar"
             tag="a"
@@ -40,7 +39,7 @@
           >
             <i
               class="sidebar__link-icon"
-              :class="`mdi mdi-book-open`"
+              :class="`mdi mdi-coins`"
             />
             <span>
               {{ 'pages-names.tokens' | globalize }}
@@ -48,7 +47,6 @@
           </router-link>
           <router-link
             key="offers"
-            v-ripple
             class="sidebar__link"
             @click.native="closeSidebar"
             tag="a"
@@ -56,7 +54,7 @@
           >
             <i
               class="sidebar__link-icon"
-              :class="`mdi mdi-book-open`"
+              :class="`mdi mdi-periodic-table`"
             />
             <span>
               {{ 'pages-names.offers' | globalize }}
@@ -66,7 +64,7 @@
       </section>
 
       <section class="sidebar__footer-section">
-        app-footer
+        {{ address }}
       </section>
     </aside>
   </div>
@@ -78,6 +76,7 @@ import Logo from '@/vue/assets/Logo'
 import { vueRoutes } from '@/vue-router/routes'
 
 import config from '@/config'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
 const EVENTS = {
   open: 'open',
@@ -91,13 +90,18 @@ export default {
     Logo,
   },
 
+  mixins: [MetamaskMixin],
   data: () => ({
     isOpened: false,
     config,
     vueRoutes,
+    address: '',
   }),
 
   computed: {},
+  async created () {
+    this.address = await this.getAccount()
+  },
 
   methods: {
     openSidebar () {
@@ -125,8 +129,7 @@ $content-item-right-padding: 2.4rem;
 .sidebar {
   position: relative;
   background-color: $col-sidebar-background;
-  box-shadow: inset -1rem -1rem 2rem 0 rgba(0, 0, 0, 0.03);
-  min-height: 100%;
+  border-bottom: 0.1rem solid $color-border;
 }
 
 .sidebar__backdrop {
@@ -178,7 +181,7 @@ $content-item-right-padding: 2.4rem;
 .sidebar__burger-btn-icon {
   display: flex;
   justify-content: center;
-  font-size: 2.4rem;
+  font-size: 2.6rem;
 }
 
 .sidebar__burger-btn--sidebar-active {
@@ -186,14 +189,13 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__aside {
-  width: $sidebar-width;
+  width: 100%;
   min-height: 100%;
   z-index: $z-sidebar;
   list-style: none;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  visibility: visible;
+  align-items: center;
+  padding: 2rem 6.5rem 2rem 5rem;
 
   @include respond-to-custom($sidebar-hide-bp) {
     opacity: 1;
@@ -220,8 +222,6 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__logo-section {
-  padding: 4rem $content-item-right-padding 0 $content-item-left-padding;
-
   @include respond-to-custom($sidebar-hide-bp) {
     .sidebar__aside--closed & {
       display: none;
@@ -232,7 +232,6 @@ $content-item-right-padding: 2.4rem;
 .sidebar__logo {
   max-width: 9.5rem;
   width: 100%;
-  height: 3.1rem;
   display: block;
 }
 
@@ -249,8 +248,8 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__links-section {
-  margin-top: 3.6rem;
-  flex: 1;
+  width: 100%;
+  display: flex;
 
   @include respond-to-custom($sidebar-hide-bp) {
     .sidebar__aside--closed & {
@@ -260,6 +259,7 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__links-group {
+  display: flex;
   margin-bottom: 4rem;
 
   &:last-child {
@@ -283,6 +283,14 @@ $content-item-right-padding: 2.4rem;
   cursor: pointer;
   color: $col-sidebar-text;
   text-decoration: none;
+
+  span {
+    font-size: 2.2rem;
+  }
+
+  &:hover {
+    color: $col-sidebar-active-elem-text;
+  }
 }
 
 .sidebar__link.router-link-active {
@@ -292,9 +300,9 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__link-icon {
-  margin-right: 1.6rem;
+  margin-right: 2rem;
   color: $col-sidebar-text;
-  font-size: 2.4rem;
+  font-size: 2.6rem;
 
   .router-link-active & {
     color: $col-sidebar-active-elem-text;
@@ -302,8 +310,6 @@ $content-item-right-padding: 2.4rem;
 }
 
 .sidebar__footer-section {
-  padding-top: 2rem;
-
   @include respond-to-custom($sidebar-hide-bp) {
     .sidebar__aside--closed & {
       display: none;
