@@ -11,6 +11,12 @@
         >
           {{ 'tokens-page.create-btn' | globalize }}
         </button>
+        <button
+          class="app__button-raised"
+          @click="isWithdrawalDrawerShown = true"
+        >
+          {{ 'tokens-page.withdraw' | globalize }}
+        </button>
       </template>
     </top-bar>
 
@@ -55,6 +61,14 @@
 
       <create-token-form @submit="isDrawerShown = false" />
     </drawer>
+    <drawer :is-shown.sync="isWithdrawalDrawerShown">
+      <template slot="heading">
+        {{ 'withdrawal-form.withdrawal' | globalize }}
+      </template>
+      <withdrawal-form
+        @operation-submitted="closeWithdrawalDrawerAndEmitEvent()"
+      />
+    </drawer>
   </div>
 </template>
 
@@ -67,6 +81,7 @@ import TopBar from '@/vue/common/TopBar'
 import Drawer from '@/vue/common/Drawer'
 import CreateTokenForm from '@/vue/forms/CreateTokenForm.vue'
 import TokenCard from '@/vue/pages/Tokens/TokenCard'
+import WithdrawalForm from '@/vue/forms/WithdrawalForm'
 
 export default {
   name: 'tokens-page',
@@ -80,6 +95,7 @@ export default {
     Drawer,
     CreateTokenForm,
     TokenCard,
+    WithdrawalForm
   },
 
   data () {
@@ -88,10 +104,16 @@ export default {
       isLoaded: false,
       isLoadFailed: false,
       isDrawerShown: false,
+      isWithdrawalDrawerShown: false,
     }
   },
   created () {
     this.isLoaded = true
+  },
+  methods: {
+    closeWithdrawalDrawerAndEmitEvent () {
+      this.isWithdrawalDrawerShown = false
+    },
   },
 }
 </script>

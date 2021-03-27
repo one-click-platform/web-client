@@ -79,7 +79,8 @@
       "no-list-title": "No tokens here yet",
       "no-list-msg": "Here will be the list of tokens",
       "create-btn": "Create token",
-      "create-token-title": "Create token"
+      "create-token-title": "Create token",
+      "withdraw": "Withdraw"
     },
     "file-field": {
       "upload-file-title": "Drag a file here or click to browse",
@@ -122,6 +123,21 @@
       "start-date-lbl": "Start date",
       "end-date-lbl": "End date"
     },
+    "withdrawal-form": {
+      "withdrawal": "Withdrawal",
+      "asset": "Asset",
+      "balance": "Balance: {{balance, money}}",
+      "amount": "Amount",
+      "withdraw-success": "Withdrawal request successfully created",
+      "failed-load-fees": "Failed to load fees. Try again later",
+      "no-assets-heading": "Ops!",
+      "no-assets": "Your wallet doesn't contain any withdrawable assets yet. You can discover some on the asset list.",
+      "discover-assets-btn": "Discover assets",
+      "can-not-load-assets": "There was an error while loading assets. Please try again later",
+      "loading-msg": "Loading…",
+      "reviewer": "Reviewer:",
+      "withdraw-btn": "Withdraw"
+    },
     "metamask-form": {
       "no-data-title": "Metamask is not installed",
       "no-data-message": "Install metamask to get better experience in using our platform",
@@ -137,6 +153,10 @@
       "chain-error": "Application supports only Main Ethereum Network. Change it in MetaMask",
       "wrong-token-id-error": "You are trying to deposit token you don't own",
       "token-id-out-of-range-error": "Token ID out of minted tokens range"
+    },
+    "offer-card": {
+      "bid": "Bid",
+      "amount": "Amount"
     }
   }
 }

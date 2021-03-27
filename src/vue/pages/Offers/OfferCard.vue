@@ -13,12 +13,21 @@
         {{ offer.description }}
       </template>
       <template slot="actions">
-        <button
-          class="app__button-flat"
-          @click="$emit(EVENTS.bid)"
-        >
-          {{ 'offer-card.bid' | globalize }}
-        </button>
+        <template v-if="isBidOpened">
+          <bid-form
+            :offer="offer"
+            @submit="$emit(EVENTS.bid)"
+            @cancel="isBidOpened = false"
+          />
+        </template>
+        <template v-else>
+          <button
+            class="app__button-flat"
+            @click="isBidOpened = true"
+          >
+            {{ 'offer-card.bid' | globalize }}
+          </button>
+        </template>
       </template>
     </card>
   </div>
@@ -27,6 +36,7 @@
 <script>
 import Card from '@/vue/common/Card'
 import CardLogo from '@/vue/common/CardLogo'
+import BidForm from '@/vue/forms/BidForm'
 
 const EVENTS = {
   bid: 'bid',
@@ -37,6 +47,7 @@ export default {
   components: {
     Card,
     CardLogo,
+    BidForm,
   },
 
   props: {
@@ -48,6 +59,7 @@ export default {
   data () {
     return {
       EVENTS,
+      isBidOpened: false,
     }
   },
 }
