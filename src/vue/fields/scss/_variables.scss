@@ -27,6 +27,7 @@ $field-placeholer-color: $col-field-text-unfocused;
 $textarea-background-color: #f9fafc;
 $col-select-field-hover: rgba($col-field-text, 0.1);
 $col-tick-field-unfocused: $col-primary-lighten;
+$field-color-label: $col-field-text;
 
 @mixin input-paddings {
   font-size: $field-text-font-size;

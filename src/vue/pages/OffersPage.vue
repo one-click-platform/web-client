@@ -50,7 +50,7 @@
         {{ 'offers-page.create-token-title' | globalize }}
       </template>
 
-      <create-offer-form />
+      <create-offer-form @submit="isDrawerShown = false" />
     </drawer>
   </div>
 </template>

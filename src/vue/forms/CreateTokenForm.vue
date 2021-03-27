@@ -65,6 +65,7 @@
 
 <script>
 import FormMixin from '@/vue/mixins/form.mixin'
+import MetamaskMixix from '@/vue/mixins/metamask.mixin'
 import { ErrorHandler } from '@/js/helpers/error-handler'
 import { Bus } from '@/js/helpers/event-bus'
 import { required, maxLength } from '@validators'
@@ -72,9 +73,13 @@ import { required, maxLength } from '@validators'
 const LOGO_MAX_SIZE = 5
 const DESCRIPTION_MAX_LENGTH = 500
 
+const EVENTS = {
+  submit: 'submit',
+}
+
 export default {
   name: 'create-token-form',
-  mixins: [FormMixin],
+  mixins: [FormMixin, MetamaskMixix],
 
   data: _ => ({
     form: {
@@ -107,7 +112,12 @@ export default {
       if (!this.isFormValid()) return
       this.disableForm()
       try {
+        await this.createToken({
+          name: this.form.name,
+          description: this.form.description,
+        })
         Bus.success('create-token-form.offer-created-msg')
+        this.$emit(EVENTS.submit)
       } catch (e) {
         ErrorHandler.process(e)
       }

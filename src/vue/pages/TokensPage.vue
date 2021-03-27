@@ -59,7 +59,7 @@
         {{ 'tokens-page.create-token-title' | globalize }}
       </template>
 
-      <create-token-form />
+      <create-token-form @submit="isDrawerShown = false" />
     </drawer>
     <drawer :is-shown.sync="isWithdrawalDrawerShown">
       <template slot="heading">

@@ -8,6 +8,7 @@ import TickField from '@/vue/fields/TickField'
 import RadioField from '@/vue/fields/RadioField'
 import FormConfirmation from '@/vue/common/FormConfirmation'
 import FileField from '@/vue/fields/FileField'
+import DateField from '@/vue/fields/DateField'
 
 export default {
   components: {
@@ -18,6 +19,7 @@ export default {
     RadioField,
     FileField,
     FormConfirmation,
+    DateField,
   },
   mixins: [FormValidationMixin, validationMixin],
   data: _ => ({

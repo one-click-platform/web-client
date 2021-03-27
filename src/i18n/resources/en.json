@@ -115,11 +115,15 @@
     },
     "create-offer-form": {
       "token-lbl": "Token",
-      "min-price-lbl": "Min. price",
-      "price-for-buy-now-lbl": "Price to buy immediately",
+      "min-price-lbl": "Min. price in ETH",
+      "price-for-buy-now-lbl": "Price to buy immediately in ETH",
       "submit-btn": "Submit",
       "desc-lbl": "Description",
-      "step-lbl": "Step"
+      "step-lbl": "Bid increment in ETH",
+      "start-date-lbl": "Start date",
+      "end-date-lbl": "End date",
+      "load-failed-msg": "There was an error while loading",
+      "loading-msg": "Loading…"
     },
     "withdrawal-form": {
       "withdrawal": "Withdrawal",
@@ -145,6 +149,12 @@
       "description-msg": "Please note, that if you have other dApp plugins installed, like Dapper, they might conflict with Metamask. If you can't connect Metamask, turn them off and reload the page.",
       "status-title": "Metamask status",
       "skip-metamask": "Skip"
+    },
+    "metamask-mixin": {
+      "not-installed-error-msg": "MetaMask is not installed",
+      "chain-error": "Application supports only Main Ethereum Network. Change it in MetaMask",
+      "wrong-token-id-error": "You are trying to deposit token you don't own",
+      "token-id-out-of-range-error": "Token ID out of minted tokens range"
     },
     "offer-card": {
       "bid": "Bid",

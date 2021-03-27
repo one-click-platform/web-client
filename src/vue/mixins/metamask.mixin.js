@@ -3,6 +3,7 @@ import { ErrorHandler } from '@/js/helpers/error-handler'
 
 import { Bus } from '@/js/helpers/event-bus'
 import config from '@/config'
+import moment from 'moment'
 
 const MAIN_CHAIN_ID = '0x1'
 const MAIN_NETWORK_TYPE = 'main'
@@ -89,6 +90,60 @@ export default {
       if (!accounts.length) this.isMetamaskConnected = false
 
       return accounts[0]
+    },
+
+    async createToken () {
+      const contract = new window.web3.eth.Contract('ABI')
+      const account = await this.getAccount()
+
+      const t = contract.methods.createToken()
+
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        t.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
+    },
+
+    async createOffer (
+      tokenId,
+      minPrice,
+      priceForBuyNow,
+      startDate,
+      endDate,
+      step,
+      description
+    ) {
+      const startTime = moment(startDate).unix() / 1000
+      const duration = moment(endDate).diff(moment(startDate), 'seconds')
+
+      const contract = new window.web3.eth.Contract('ABI')
+      const account = await this.getAccount()
+
+      const offer = contract.methods.createOffer({
+        assetAddress: '',
+        assetId: tokenId,
+        currencyAddress: '',
+        startPrice: minPrice,
+        buyNowPrice: priceForBuyNow,
+        startTime,
+        duration,
+        durationIncrement: 30,
+        bidIncrement: step,
+        description,
+      })
+
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        offer.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
     },
   },
 }
