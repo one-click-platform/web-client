@@ -3,33 +3,39 @@
     id="app"
     v-if="isAppInitialized"
     :key="lang">
-    <template v-if="isNavigationRendered">
-      <div
-        class="app__container"
-        :class="{'app__container--fixed': isSidebarOpen}"
-      >
-        <sidebar
-          @open="isSidebarOpen = true"
-          @close="isSidebarOpen = false"
-        />
-
+    <div
+      v-if="!isMetamaskConnected"
+      class="app__metamask-form-wrp">
+      <metamask-form />
+    </div>
+    <template v-else>
+      <template v-if="isNavigationRendered">
         <div
-          class="app__main-content"
+          class="app__container"
           :class="{'app__container--fixed': isSidebarOpen}"
         >
-          <div class="app__navbar">
-            <navbar />
-          </div>
+          <sidebar
+            @open="isSidebarOpen = true"
+            @close="isSidebarOpen = false"
+          />
 
-          <div class="app__main">
-            <router-view />
+          <div
+            class="app__main-content"
+            :class="{'app__container--fixed': isSidebarOpen}"
+          >
+            <div class="app__navbar">
+              <navbar />
+            </div>
+
+            <div class="app__main">
+              <router-view />
+            </div>
           </div>
         </div>
-      </div>
-    </template>
-
-    <template v-else>
-      <router-view />
+      </template>
+      <template v-else>
+        <router-view />
+      </template>
     </template>
   </div>
 </template>
@@ -37,11 +43,11 @@
 <script>
 import Navbar from '@/vue/navigation/Navbar.vue'
 import Sidebar from '@/vue/navigation/Sidebar.vue'
+import MetamaskForm from '@/vue/forms/MetamaskForm'
 
-import { api } from '@/api'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
 import {
-  mapGetters,
   mapMutations,
 } from 'vuex'
 import { vuexTypes } from '@/vuex'
@@ -52,12 +58,12 @@ import { i18n } from '@/i18n'
 
 export default {
   name: 'app',
-
   components: {
     Navbar,
     Sidebar,
+    MetamaskForm,
   },
-
+  mixins: [MetamaskMixin],
   data: () => ({
     isAppInitialized: false,
     vueRoutes,
@@ -66,22 +72,12 @@ export default {
   }),
 
   computed: {
-    ...mapGetters([
-      vuexTypes.isLoggedIn,
-      vuexTypes.token,
-    ]),
     isNavigationRendered () {
       return this.$route.matched.some(m => m.meta.isNavigationRendered)
     },
   },
 
-  watch: {
-    isLoggedIn (value) {
-      if (!document.hasFocus() || !value) {
-        location.reload()
-      }
-    },
-  },
+  watch: {},
 
   async created () {
     this.setAppTitle()
@@ -97,10 +93,6 @@ export default {
       popState: vuexTypes.POP_STATE,
     }),
     async initApp () {
-      // TODO: should be done before the app rendered
-      if (this[vuexTypes.isLoggedIn]) {
-        api.useToken(this.token)
-      }
     },
 
     watchChangesInLocalStorage () {
@@ -191,5 +183,10 @@ export default {
   margin-left: 0.4rem;
   color: $col-message-box-text;
   font-size: 1.6rem;
+}
+
+.app__metamask-form-wrp {
+  width: 100%;
+  padding: 5%;
 }
 </style>

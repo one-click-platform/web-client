@@ -34,7 +34,7 @@ export default Object.assign(
     /**
      * App name
      */
-    APP_NAME: 'National Bank of Ukraine',
+    APP_NAME: '4+2',
 
     // deprecated constants
 
@@ -43,6 +43,11 @@ export default Object.assign(
      * The field being displayed on login screen.
      */
     BUILD_VERSION: packageJson.version,
+
+    /**
+     * Ethereum network type. 'main' for Main Ethereum Network
+     */
+    ETHEREUM_NETWORK_TYPE: 'test',
 
     /**
      * Session storage key
