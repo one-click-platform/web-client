@@ -1,14 +1,8 @@
 <template>
-  <div
-    class="loader"
-    :class="{ 'loader--position-center': positionCenter }">
-    <div class="loader__animation" />
-    <div
-      class="loader__message"
-      v-if="messageId"
-    >
-      {{ messageId | globalize }}
-    </div>
+  <div class="loader__app">
+    <span>4&nbsp;</span>
+    <span>+&nbsp;</span>
+    <span>2</span>
   </div>
 </template>
 
@@ -25,52 +19,38 @@ export default {
 <style lang="scss">
 @import '~@scss/variables';
 
-.loader {
-  display: flex;
-  align-items: center;
+$str: 'franklin gothic medium';
+
+/* stylelint-disable no-descending-specificity */
+.loader__app {
+  perspective: 70rem;
 }
 
-.loader--position-center {
-  justify-content: center;
+.loader__app > span {
+  font-size: 6rem;
+  font-family: $str, sans-serif;
+  display: inline-block;
+  animation: flip 2.2s infinite linear;
+  transform-origin: 0 70%;
+  transform-style: preserve-3d;
 }
 
-.loader__message {
-  color: $col-loader-text;
-}
-
-.loader__animation {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  position: relative;
-  margin-right: 0.5rem;
-
-  &:after,
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 3rem;
-    height: 3rem;
-    border: 0.5rem solid transparent;
-    border-bottom: 0.5rem solid $col-loader-icon;
-    border-radius: 50%;
-    animation: rotate 1s linear infinite;
+@keyframes flip {
+  35% {
+    transform: rotateX(360deg);
   }
 
-  &:before {
-    width: 4rem;
-    height: 4rem;
-    animation-direction: reverse;
+  100% {
+    transform: rotateX(360deg);
   }
 }
 
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.loader__app > span:nth-child(2) {
+  animation-delay: 0.3s;
 }
+
+.loader__app > span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+/* stylelint-enable no-descending-specificity */
 </style>
