@@ -124,8 +124,8 @@
     },
     "create-offer-form": {
       "token-lbl": "Token",
-      "min-price-lbl": "Min. price in ETH",
-      "price-for-buy-now-lbl": "Price to buy immediately in ETH",
+      "min-price-lbl": "Min. price in WETH",
+      "price-for-buy-now-lbl": "Price to buy immediately in WETH",
       "submit-btn": "Submit",
       "desc-lbl": "Description",
       "step-lbl": "Percent increment step",
