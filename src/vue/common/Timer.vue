@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <span>
     {{ time }}
-  </div>
+  </span>
 </template>
 
 <script>
@@ -39,6 +39,7 @@ export default {
     start () {
       this.countDownDate = new Date(this.endTime).getTime()
       clearInterval(this.x)
+      this.calcTime()
       this.timer()
     },
     calcTime () {

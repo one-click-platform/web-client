@@ -44,7 +44,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 11rem;
+    height: 18rem;
     border-bottom: 0.1rem solid $color-border;
     background-color: $col-asset-card-header-background;
   }

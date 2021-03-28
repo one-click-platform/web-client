@@ -40,6 +40,8 @@
 <script>
 import FormMixin from '@/vue/mixins/form.mixin'
 import { required } from '@validators'
+import { ErrorHandler } from '@/js/helpers/error-handler'
+import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 
 const EVENTS = {
   cancel: 'cancel',
@@ -48,7 +50,7 @@ const EVENTS = {
 export default {
   name: 'wallet-send',
   components: {},
-  mixins: [FormMixin],
+  mixins: [FormMixin, MetamaskMixin],
   props: {
     offer: {
       type: Object,
@@ -75,9 +77,16 @@ export default {
     }
   },
   methods: {
-    submit () {
+    async submit () {
       if (!this.isFormValid()) return
-      this.$emit(EVENTS.submitted)
+      this.disableForm()
+      try {
+        await this.createBid(this.offer.tokenId, this.form.amount)
+        this.$emit(EVENTS.submitted)
+      } catch (e) {
+        ErrorHandler.process(e)
+      }
+      this.enableForm()
     },
   },
 }
