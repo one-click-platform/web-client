@@ -31,7 +31,7 @@
         <template v-if="isBidOpened">
           <bid-form
             :offer="offer"
-            @submit="$emit(EVENTS.bid)"
+            @submitted="$emit(EVENTS.bid); isBidOpened = false"
             @cancel="isBidOpened = false"
           />
         </template>
