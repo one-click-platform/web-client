@@ -30,8 +30,9 @@
           </button>
           <button
             class="app__button-flat"
+            @click="$emit(EVENTS.buyNow, offer.id)"
           >
-            {{ 'offer-card.by-now' | globalize }}
+            {{ 'offer-card.buy-now' | globalize }}
           </button>
           <button
             class="app__button-flat"
@@ -73,6 +74,7 @@ import Drawer from '@/vue/common/Drawer'
 
 const EVENTS = {
   bid: 'bid',
+  buyNow: 'buy-now',
 }
 
 export default {
@@ -90,6 +92,7 @@ export default {
       required: true,
     },
   },
+
   data () {
     return {
       EVENTS,

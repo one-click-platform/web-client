@@ -226,5 +226,22 @@ export default {
           .on('error', err => reject(err))
       })
     },
+
+    async buyNow (auctionId) {
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
+
+      const account = await this.getAccount()
+
+      try {
+        await contract.methods.buyNow(auctionId).send({
+          from: account,
+        })
+      } catch (e) {
+        ErrorHandler.processWithoutFeedback(e)
+      }
+    }
   },
 }
