@@ -87,7 +87,6 @@ export default {
         Bus.error('metamask-mixin.not-installed-error-msg')
       }
     },
-
     async enableMetamask () {
       const { ethereum } = window
       if (!ethereum) return
@@ -106,13 +105,11 @@ export default {
 
       await this.checkIfMetamaskIsConnected()
     },
-
     async checkIfMetamaskIsConnected () {
       if (!window.ethereum) return
       this.isMetamaskConnected = Boolean(await this.getAccount())
       this.checkNetwork()
     },
-
     async getAccount () {
       if (!this.isMetamaskEnabled) return
 
@@ -122,7 +119,6 @@ export default {
 
       return accounts[0]
     },
-
     async createToken (data) {
       const contract = new window.web3.eth.Contract(
         tokenABI,
@@ -142,7 +138,6 @@ export default {
           .on('error', err => reject(err))
       })
     },
-
     async getTokens () {
       const contract = new window.web3.eth.Contract(
         tokenABI,
@@ -155,7 +150,6 @@ export default {
       )
       return tokens
     },
-
     async getTokenDataById (id) {
       const contract = new window.web3.eth.Contract(
         tokenABI,
@@ -164,7 +158,6 @@ export default {
       const data = await contract.methods.tokensData(id).call()
       return { id, ...JSON.parse(data) }
     },
-
     async getOffers () {
       const contract = new window.web3.eth.Contract(
         auctionABI,
@@ -179,7 +172,6 @@ export default {
         i => i.status === '2' || i.status === '3'
       )
     },
-
     async getOfferDataById (id) {
       const contract = new window.web3.eth.Contract(
         auctionABI,
@@ -195,7 +187,6 @@ export default {
         tokenDetails: tokenData,
       }
     },
-
     async createOffer (
       tokenId,
       minPrice,
@@ -225,7 +216,7 @@ export default {
         startTime,
         duration,
         30, // durationIncrement seconds
-        this.BN(1e+16).multipliedBy(step), // bidIncrement
+        this.BN(1e+16).multipliedBy(step).toFixed(),
         description,
       )
 
