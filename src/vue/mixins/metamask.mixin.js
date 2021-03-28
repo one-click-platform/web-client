@@ -192,6 +192,7 @@ export default {
       const details = await contract.methods.getAuctionInfo(id).call()
       const tokenData = await this.getTokenDataById(details.tokenId)
       return {
+        id,
         status,
         auctionDetails: details,
         tokenDetails: tokenData,

@@ -109,9 +109,9 @@ export default {
       try {
         const account = await this.getAccount()
         if (offer.creator === account) {
-          await this.claimRepayment(offer.tokenId)
+          await this.claimRepayment(offer.id)
         } else {
-          await this.claimLot(offer.tokenId)
+          await this.claimLot(offer.id)
         }
       } catch (e) {
         ErrorHandler.process(e)

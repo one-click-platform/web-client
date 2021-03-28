@@ -81,7 +81,7 @@ export default {
       if (!this.isFormValid()) return
       this.disableForm()
       try {
-        await this.createBid(this.offer.tokenId, this.form.amount)
+        await this.createBid(this.offer.id, this.form.amount)
         this.$emit(EVENTS.submitted)
       } catch (e) {
         ErrorHandler.process(e)
