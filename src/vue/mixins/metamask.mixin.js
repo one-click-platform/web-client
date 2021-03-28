@@ -258,5 +258,39 @@ export default {
           .on('error', err => reject(err))
       })
     },
+
+    async claimRepayment (id) {
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
+      const account = await this.getAccount()
+      const auction = contract.methods.claimRepayment(id)
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        auction.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
+    },
+
+    async claimLot (id) {
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
+      const account = await this.getAccount()
+      const auction = contract.methods.claimLot(id)
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        auction.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
+    },
   },
 }
