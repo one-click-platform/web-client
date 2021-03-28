@@ -39,7 +39,18 @@
         </template>
         <template v-else-if="offer.status === '3'">
           <button
-            v-if="((account === offer.auctionDetails.creator) &&
+            v-if="(account === offer.auctionDetails.creator) &&
+              !+offer.auctionDetails.highestBid &&
+              !offer.auctionDetails.lotBought
+            "
+            class="app__button-flat"
+            :disabled="isDisabled"
+            @click="$emit(EVENTS.regain)"
+          >
+            {{ 'offer-card.regain-lot' | globalize }}
+          </button>
+          <button
+            v-else-if="((account === offer.auctionDetails.creator) &&
               !offer.auctionDetails.repaymentTransferred) ||
               ((account === offer.auctionDetails.currentBidder) &&
               !offer.auctionDetails.lotTransferred)
@@ -173,6 +184,7 @@ const EVENTS = {
   bid: 'bid',
   buyNow: 'buy-now',
   claim: 'claim',
+  regain: 'regain',
 }
 
 export default {

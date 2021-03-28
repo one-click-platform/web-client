@@ -254,6 +254,13 @@ export const auctionABI = [
     type: 'function',
   },
   {
+    inputs: [{ internalType: 'uint256', name: '_auctionId', type: 'uint256' }],
+    name: 'regainLot',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
     inputs: [],
     name: 'renounceOwnership',
     outputs: [],

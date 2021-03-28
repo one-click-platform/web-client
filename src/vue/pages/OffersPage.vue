@@ -31,6 +31,7 @@
               :is-disabled="isDisabled"
               @claim="claim(item)"
               @bid="loadOffers()"
+              @regain="regain(item)"
             />
           </card-list>
         </template>
@@ -131,6 +132,16 @@ export default {
         } else {
           await this.claimLot(offer.id)
         }
+        await this.loadOffers()
+      } catch (e) {
+        ErrorHandler.process(e)
+      }
+      this.isDisabled = false
+    },
+    async regain (offer) {
+      this.isDisabled = true
+      try {
+        await this.regainLot(offer.id)
         await this.loadOffers()
       } catch (e) {
         ErrorHandler.process(e)

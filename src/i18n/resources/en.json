@@ -182,7 +182,8 @@
       "buy-now": "Buy now",
       "amount": "Amount",
       "details": "Details",
-      "claim": "Claim"
+      "claim": "Claim",
+      "regain-lot": "Regain"
     },
     "errors": {
       "default": "Something bad happened. Please try again later or contact the system owner."
