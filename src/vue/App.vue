@@ -49,7 +49,7 @@
             4b. paste password<br>
             5. reload frontend<br><br>
             Network details for using:<br>
-            Chain Id: {{ config.ETHEREUM_NETWORK_TYPE }}
+            Chain Id: {{ config.ETHEREUM_NETWORK_TYPE }}<br>
             Node endpoint: {{ config.NODE_ENDPOINT }}
           </div>
         </template>
