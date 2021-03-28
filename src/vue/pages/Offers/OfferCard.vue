@@ -35,7 +35,7 @@
             @cancel="isBidOpened = false"
           />
         </template>
-        <template v-else-if="+offer.status === 3">
+        <template v-else-if="offer.status === '3'">
           <button
             class="app__button-flat"
             :disabled="isDisabled"

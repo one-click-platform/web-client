@@ -180,7 +180,9 @@ export default {
       const offers = await Promise.all(
         offerIds.map(id => this.getOfferDataById(id))
       )
-      return offers
+      return offers.filter(
+        i => i.status === '2' || i.status === '3'
+      )
     },
 
     async getOfferDataById (id) {
