@@ -1,7 +1,7 @@
 <template>
   <div class="metamask-form">
     <template v-if="isMetamaskEnabled">
-      <template v-if="isMainNet || config.ETHEREUM_NETWORK_TYPE !== 'main'">
+      <template v-if="true">
         <div class="metamask-form__metamask-status">
           <p class="metamask-form__metamask-status-title">
             {{ 'metamask-form.status-title' | globalize }}

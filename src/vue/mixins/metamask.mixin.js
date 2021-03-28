@@ -9,15 +9,11 @@ import { auctionABI } from '@/js/const/auctionAbi.const.js'
 import { tokenABI } from '@/js/const/erc721.const.js'
 import { wethAbi } from '@/js/const/weth.const.js'
 
-const MAIN_CHAIN_ID = '0x1'
-const MAIN_NETWORK_TYPE = 'main'
-
 export default {
   data: _ => ({
     isMetamaskProcessing: false,
     isMetamaskConnected: false,
     isMetamaskEnabled: false,
-    isMainNet: false,
     isLoadedMetamask: false,
   }),
 
@@ -96,23 +92,7 @@ export default {
         await this.checkIfMetamaskIsConnected()
       })
 
-      ethereum.on('chainChanged', async () => {
-        this.checkIfMainnet()
-      })
-
-      await this.checkIfMainnet()
       await this.checkIfMetamaskIsConnected()
-    },
-
-    async checkIfMainnet () {
-      // If we use testing instance, we'd count any network as main but in case
-      // of Buy offer we need to use only main net
-      this.isMainNet = config.ETHEREUM_NETWORK_TYPE === MAIN_NETWORK_TYPE
-        ? window.ethereum.chainId === MAIN_CHAIN_ID
-        : true
-      if (!this.isMainNet) {
-        Bus.error('metamask-mixin.chain-error')
-      }
     },
 
     async checkIfMetamaskIsConnected () {
@@ -180,7 +160,9 @@ export default {
       const offers = await Promise.all(
         offerIds.map(id => this.getOfferDataById(id))
       )
-      return offers
+      return offers.filter(
+        i => i.status === '2' || i.status === '3'
+      )
     },
 
     async getOfferDataById (id) {

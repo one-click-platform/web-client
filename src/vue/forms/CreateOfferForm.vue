@@ -104,22 +104,6 @@
               </div>
             </div>
 
-            <div class="app__form-row">
-              <div class="app__form-field">
-                <textarea-field
-                  name="create-offer-form-description"
-                  v-model="form.description"
-                  :label="'create-offer-form.desc-lbl' | globalize"
-                  :disabled="formMixin.isDisabled"
-                  rows="8"
-                  :error-message="getFieldErrorMessage(
-                    'form.description',
-                    { length: DESCRIPTION_MAX_LENGTH }
-                  )"
-                />
-              </div>
-            </div>
-
             <div class="app__form-actions">
               <button
                 type="submit"
@@ -150,7 +134,7 @@
 import FormMixin from '@/vue/mixins/form.mixin'
 import { ErrorHandler } from '@/js/helpers/error-handler'
 import { Bus } from '@/js/helpers/event-bus'
-import { required, maxLength } from '@validators'
+import { required } from '@validators'
 import moment from 'moment'
 import MetamaskMixin from '@/vue/mixins/metamask.mixin'
 import NoDataMessage from '@/vue/common/NoDataMessage'
@@ -202,9 +186,6 @@ export default {
         },
         endDate: {
           required,
-        },
-        description: {
-          maxLength: maxLength(DESCRIPTION_MAX_LENGTH),
         },
       },
     }
