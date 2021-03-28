@@ -20,6 +20,15 @@
             @cancel="isBidOpened = false"
           />
         </template>
+        <template v-else-if="+offer.status === 3">
+          <button
+            class="app__button-flat"
+            :disabled="isDisabled"
+            @click="$emit(EVENTS.claim)"
+          >
+            {{ 'offer-card.claim' | globalize }}
+          </button>
+        </template>
         <template v-else>
           <button
             v-ripple
@@ -73,6 +82,7 @@ import Drawer from '@/vue/common/Drawer'
 
 const EVENTS = {
   bid: 'bid',
+  claim: 'claim',
 }
 
 export default {
@@ -88,6 +98,10 @@ export default {
     offer: {
       type: Object,
       required: true,
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

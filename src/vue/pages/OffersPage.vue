@@ -27,6 +27,8 @@
             :list="list">
             <offer-card
               :offer="item"
+              :is-disabled="isDisabled"
+              @claim="claim(item)"
             />
           </card-list>
         </template>
@@ -88,6 +90,7 @@ export default {
       isLoaded: false,
       isLoadFailed: false,
       isDrawerShown: false,
+      isDisabled: false,
     }
   },
   async created () {
@@ -98,6 +101,23 @@ export default {
       this.isLoadFailed = true
     }
     this.isLoaded = true
+  },
+
+  methods: {
+    async claim (offer) {
+      this.isDisabled = true
+      try {
+        const account = await this.getAccount()
+        if (offer.creator === account) {
+          await this.claimRepayment(offer.tokenId)
+        } else {
+          await this.claimLot(offer.tokenId)
+        }
+      } catch (e) {
+        ErrorHandler.process(e)
+      }
+      this.isDisabled = false
+    },
   },
 }
 </script>
