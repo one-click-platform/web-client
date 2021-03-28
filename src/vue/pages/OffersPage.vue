@@ -123,7 +123,7 @@ export default {
       this.isDisabled = true
       try {
         const account = await this.getAccount()
-        if (offer.creator === account) {
+        if (offer.auctionDetails.creator === account) {
           await this.claimRepayment(offer.id)
         } else {
           await this.claimLot(offer.id)

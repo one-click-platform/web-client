@@ -44,7 +44,11 @@
             {{ 'offer-card.claim' | globalize }}
           </button>
         </template>
-        <template v-else>
+        <template
+          v-else-if="offer.status !== '3' &&
+            !offer.auctionDetails.lotTransferred &&
+            !offer.auctionDetails.repaymentTransferred"
+        >
           <button
             v-ripple
             class="app__button-flat"
