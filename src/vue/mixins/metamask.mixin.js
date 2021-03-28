@@ -191,7 +191,11 @@ export default {
       const status = await contract.methods.getStatus(id).call()
       const details = await contract.methods.getAuctionInfo(id).call()
       const tokenData = await this.getTokenDataById(details.tokenId)
-      return { status, ...details, ...tokenData }
+      return {
+        status,
+        auctionDetails: details,
+        tokenDetails: tokenData,
+      }
     },
 
     async createOffer (

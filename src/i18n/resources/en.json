@@ -113,7 +113,14 @@
       "no-list-title": "No offers here yet",
       "no-list-msg": "Here will be the list of offers",
       "create-btn": "Create offer",
-      "create-token-title": "Create offer"
+      "create-token-title": "Create offer",
+      "price": "Current price:",
+      "buy-now-price": "Buy now price:",
+      "time-left": "Time left:",
+      "name": "Name",
+      "description": "Description",
+      "step": "Step procent",
+      "img-url": "Img url"
     },
     "create-offer-form": {
       "token-lbl": "Token",
