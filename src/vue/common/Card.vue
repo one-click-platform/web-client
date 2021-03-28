@@ -80,6 +80,10 @@ export default {
     border: 0.1rem solid $color-border;
     background-color: $col-sale-card-background;
     min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   .card__media {
@@ -93,6 +97,7 @@ export default {
     max-width: 100%;
     overflow: hidden;
     padding: 1.6rem 2rem;
+    flex: 1;
   }
 
   .card__header {

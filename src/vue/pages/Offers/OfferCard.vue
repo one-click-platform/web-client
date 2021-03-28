@@ -14,15 +14,17 @@
         {{ fromWei(
           +offer.auctionDetails.highestBid || offer.auctionDetails.startPrice
         ) | formatMoney }}<br>
-        {{ 'offers-page.buy-now-price'| globalize }}
-        {{ fromWei(offer.auctionDetails.buyNowPrice) | formatMoney }}<br>
-        {{ 'offers-page.time-left'| globalize }}
-        <timer
-          :end-time="
-            (
-              +offer.auctionDetails.startTime + +offer.auctionDetails.duration
-            )*1000
-          " />
+        <template v-if="offer.status !== '3'">
+          {{ 'offers-page.buy-now-price'| globalize }}
+          {{ fromWei(offer.auctionDetails.buyNowPrice) | formatMoney }}<br>
+          {{ 'offers-page.time-left'| globalize }}
+          <timer
+            :end-time="
+              (
+                +offer.auctionDetails.startTime + +offer.auctionDetails.duration
+              )*1000
+            " />
+        </template>
       </template>
       <template slot="content">
         {{ offer.tokenDetails.description }}
@@ -37,8 +39,10 @@
         </template>
         <template v-else-if="offer.status === '3'">
           <button
-            v-if="account === offer.auctionDetails.creator ||
-              account === offer.auctionDetails.currentBidder
+            v-if="((account === offer.auctionDetails.creator) &&
+              !offer.auctionDetails.repaymentTransferred) ||
+              ((account === offer.auctionDetails.currentBidder) &&
+              !offer.auctionDetails.lotTransferred)
             "
             class="app__button-flat"
             :disabled="isDisabled"
@@ -47,11 +51,7 @@
             {{ 'offer-card.claim' | globalize }}
           </button>
         </template>
-        <template
-          v-else-if="offer.status !== '3' &&
-            !offer.auctionDetails.lotTransferred &&
-            !offer.auctionDetails.repaymentTransferred"
-        >
+        <template v-else>
           <button
             v-ripple
             class="app__button-flat"
@@ -210,3 +210,8 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.offer-card {
+  height: 100%;
+}
+</style>
