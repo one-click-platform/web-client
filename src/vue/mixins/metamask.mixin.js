@@ -30,7 +30,8 @@ export default {
     checkNetwork () {
       if (!config.ETHEREUM_NETWORK_TYPE) return
       const we3ChainId = window.ethereum.chainId
-      this.isNeedChangeNetwork = we3ChainId !== config.ETHEREUM_NETWORK_TYPE
+      this.isNeedChangeNetwork = String(we3ChainId) !==
+        String(config.ETHEREUM_NETWORK_TYPE)
     },
 
     BN (value) {
