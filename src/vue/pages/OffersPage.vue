@@ -42,7 +42,7 @@
     </template>
 
     <template v-else>
-      <skeleton-cards-loader />
+      <loader-midl />
     </template>
 
     <drawer :is-shown.sync="isDrawerShown">
@@ -59,7 +59,7 @@
 import NoDataMessage from '@/vue/common/NoDataMessage'
 import CardList from '@/vue/common/CardList'
 import ErrorMessage from '@/vue/common/ErrorMessage'
-import SkeletonCardsLoader from '@/vue/common/skeleton-loader/SkeletonCardsLoader'
+import LoaderMidl from '@/vue/common/LoaderMidl'
 import TopBar from '@/vue/common/TopBar'
 import Drawer from '@/vue/common/Drawer'
 import CreateOfferForm from '@/vue/forms/CreateOfferForm.vue'
@@ -74,11 +74,11 @@ export default {
     NoDataMessage,
     CardList,
     ErrorMessage,
-    SkeletonCardsLoader,
     TopBar,
     Drawer,
     CreateOfferForm,
     OfferCard,
+    LoaderMidl,
   },
   mixins: [MetamaskMixin],
 

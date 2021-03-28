@@ -69,7 +69,7 @@ export default {
   $header-line-height: 2.6rem;
   $accent-title-line-height: 1.8rem;
   $content-line-height: 1.8rem;
-  $content-number-text-lien: 2;
+  $content-number-text-lien: 3;
   $content-height: $content-line-height * $content-number-text-lien;
 
   .card {
