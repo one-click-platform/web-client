@@ -38,7 +38,7 @@
 
         <template v-else>
           <no-data-message
-            icon-name="ticket-percent"
+            icon-name="wallet-outline"
             :title="'offers-page.no-list-title' | globalize"
             :message="'offers-page.no-list-msg' | globalize"
           />

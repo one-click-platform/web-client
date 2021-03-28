@@ -37,54 +37,64 @@
             @cancel="isBidOpened = false"
           />
         </template>
-        <template v-else-if="offer.status === '3'">
-          <button
-            v-if="(account === offer.auctionDetails.creator) &&
-              !+offer.auctionDetails.highestBid &&
-              !offer.auctionDetails.lotBought
-            "
-            class="app__button-flat"
-            :disabled="isDisabled"
-            @click="$emit(EVENTS.regain)"
-          >
-            {{ 'offer-card.regain-lot' | globalize }}
-          </button>
-          <button
-            v-else-if="((account === offer.auctionDetails.creator) &&
-              !offer.auctionDetails.repaymentTransferred) ||
-              ((account === offer.auctionDetails.currentBidder) &&
-              !offer.auctionDetails.lotTransferred)
-            "
-            class="app__button-flat"
-            :disabled="isDisabled"
-            @click="$emit(EVENTS.claim)"
-          >
-            {{ 'offer-card.claim' | globalize }}
-          </button>
-        </template>
         <template v-else>
-          <button
-            v-ripple
-            class="app__button-flat"
-            :disabled="isDisabled"
-            @click="isInfoOpened = true"
-          >
-            <i class="mdi mdi-information-outline" />
-          </button>
-          <button
-            class="app__button-flat"
-            :disabled="isDisabled"
-            @click="$emit(EVENTS.buyNow, offer.id)"
-          >
-            {{ 'offer-card.buy-now' | globalize }}
-          </button>
-          <button
-            class="app__button-flat"
-            :disabled="isDisabled"
-            @click="isBidOpened = true"
-          >
-            {{ 'offer-card.bid' | globalize }}
-          </button>
+          <template v-if="offer.status === '3'">
+            <button
+              v-ripple
+              class="app__button-flat"
+              :disabled="isDisabled"
+              @click="isInfoOpened = true"
+            >
+              <i class="mdi mdi-information-outline" />
+            </button>
+            <button
+              v-if="(account === offer.auctionDetails.creator) &&
+                !+offer.auctionDetails.highestBid &&
+                !offer.auctionDetails.lotBought
+              "
+              class="app__button-flat"
+              :disabled="isDisabled"
+              @click="$emit(EVENTS.regain)"
+            >
+              {{ 'offer-card.regain-lot' | globalize }}
+            </button>
+            <button
+              v-else-if="((account === offer.auctionDetails.creator) &&
+                !offer.auctionDetails.repaymentTransferred) ||
+                ((account === offer.auctionDetails.currentBidder) &&
+                !offer.auctionDetails.lotTransferred)
+              "
+              class="app__button-flat"
+              :disabled="isDisabled"
+              @click="$emit(EVENTS.claim)"
+            >
+              {{ 'offer-card.claim' | globalize }}
+            </button>
+          </template>
+          <template v-else>
+            <button
+              v-ripple
+              class="app__button-flat"
+              :disabled="isDisabled"
+              @click="isInfoOpened = true"
+            >
+              <i class="mdi mdi-information-outline" />
+            </button>
+            <button
+              class="app__button-flat"
+              :disabled="isDisabled"
+              @click="$emit(EVENTS.buyNow, offer.id)"
+            >
+              {{ 'offer-card.buy-now' | globalize }}
+            </button>
+            <button
+              class="app__button-flat"
+              :disabled="isDisabled"
+              @click="isBidOpened = true"
+            >
+              {{ 'offer-card.bid' | globalize }}
+            </button>
+          </template>
         </template>
       </template>
     </card>
