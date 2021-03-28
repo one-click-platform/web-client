@@ -27,7 +27,7 @@
             :list="list">
             <offer-card
               :offer="item"
-              @buy-now="buyAndReloadList"
+              @buy-now="buyAndReloadList(item)"
               :is-disabled="isDisabled"
               @claim="claim(item)"
             />
@@ -109,8 +109,8 @@ export default {
       }
       this.isLoaded = true
     },
-    async buyAndReloadList (id) {
-      await this.buyNow(id)
+    async buyAndReloadList (offer) {
+      await this.buyNow(offer.id, offer.auctionDetails.buyNowPrice)
       await this.loadOffers()
     },
     async claim (offer) {

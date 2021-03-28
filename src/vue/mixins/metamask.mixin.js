@@ -242,7 +242,7 @@ export default {
       })
     },
 
-    async buyNow (auctionId) {
+    async buyNow (auctionId, price) {
       const contract = new window.web3.eth.Contract(
         auctionABI,
         config.AUCTION_ADDRESS
@@ -250,6 +250,7 @@ export default {
 
       const account = await this.getAccount()
 
+      await this.approveErc20(account, config.AUCTION_ADDRESS, price)
       try {
         await contract.methods.buyNow(auctionId).send({
           from: account,
