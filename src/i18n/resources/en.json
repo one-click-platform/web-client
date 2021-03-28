@@ -179,7 +179,7 @@
     },
     "offer-card": {
       "bid": "Bid",
-      "by-now": "By now",
+      "buy-now": "Buy now",
       "amount": "Amount",
       "details": "Details",
       "claim": "Claim"

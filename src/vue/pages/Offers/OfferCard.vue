@@ -54,8 +54,9 @@
           </button>
           <button
             class="app__button-flat"
+            @click="$emit(EVENTS.buyNow, offer.id)"
           >
-            {{ 'offer-card.by-now' | globalize }}
+            {{ 'offer-card.buy-now' | globalize }}
           </button>
           <button
             class="app__button-flat"
@@ -160,6 +161,7 @@ import Timer from '@/vue/common/Timer'
 
 const EVENTS = {
   bid: 'bid',
+  buyNow: 'buy-now',
   claim: 'claim',
 }
 
@@ -184,6 +186,7 @@ export default {
       default: false,
     },
   },
+
   data () {
     return {
       EVENTS,
