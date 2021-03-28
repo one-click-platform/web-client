@@ -7,7 +7,7 @@
     <div
       class="card-list__item"
       v-for="(item, index) in list"
-      :key="item.id"
+      :key="`${item.id}${index}`"
     >
       <slot
         :item="item"
