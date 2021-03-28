@@ -7,6 +7,7 @@ import moment from 'moment'
 import BigNumber from 'bignumber.js'
 import { auctionABI } from '@/js/const/auctionAbi.const.js'
 import { tokenABI } from '@/js/const/erc721.const.js'
+import { wethAbi } from '@/js/const/weth.const.js'
 
 const MAIN_CHAIN_ID = '0x1'
 const MAIN_NETWORK_TYPE = 'main'
@@ -50,6 +51,15 @@ export default {
         config.TOKEN_ADDRESS
       )
       await contract.methods.approve(auctionAddress, tokenId).send({
+        from: account,
+      })
+    },
+    async approveErc20 (account, auctionAddress, amount) {
+      const contract = new window.web3.eth.Contract(
+        wethAbi,
+        config.CURRENCY_ADDRESS
+      )
+      await contract.methods.approve(auctionAddress, amount).send({
         from: account,
       })
     },
@@ -221,6 +231,62 @@ export default {
         description,
       )
 
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        auction.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
+    },
+
+    async createBid (id, amount) {
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
+      const account = await this.getAccount()
+      const price = this.toWei(amount)
+      await this.approveErc20(account, config.AUCTION_ADDRESS, price)
+      const auction = contract.methods.bid(
+        id,
+        price
+      )
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        auction.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
+    },
+
+    async claimRepayment (id) {
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
+      const account = await this.getAccount()
+      const auction = contract.methods.claimRepayment(id)
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        auction.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
+    },
+
+    async claimLot (id) {
+      const contract = new window.web3.eth.Contract(
+        auctionABI,
+        config.AUCTION_ADDRESS
+      )
+      const account = await this.getAccount()
+      const auction = contract.methods.claimLot(id)
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
         auction.send({ from: account })
