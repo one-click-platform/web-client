@@ -110,8 +110,14 @@ export default {
       this.isLoaded = true
     },
     async buyAndReloadList (offer) {
-      await this.buyNow(offer.id, offer.auctionDetails.buyNowPrice)
-      await this.loadOffers()
+      this.isDisabled = true
+      try {
+        await this.buyNow(offer.id, offer.auctionDetails.buyNowPrice)
+        await this.loadOffers()
+      } catch (e) {
+        ErrorHandler.process(e)
+      }
+      this.isDisabled = false
     },
     async claim (offer) {
       this.isDisabled = true

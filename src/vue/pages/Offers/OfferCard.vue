@@ -48,18 +48,21 @@
           <button
             v-ripple
             class="app__button-flat"
+            :disabled="isDisabled"
             @click="isInfoOpened = true"
           >
             <i class="mdi mdi-information-outline" />
           </button>
           <button
             class="app__button-flat"
+            :disabled="isDisabled"
             @click="$emit(EVENTS.buyNow, offer.id)"
           >
             {{ 'offer-card.buy-now' | globalize }}
           </button>
           <button
             class="app__button-flat"
+            :disabled="isDisabled"
             @click="isBidOpened = true"
           >
             {{ 'offer-card.bid' | globalize }}
