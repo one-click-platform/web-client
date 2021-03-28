@@ -121,8 +121,10 @@ export default {
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
         mint.send({ from: account })
-          .on('transactionHash', async () => {
-            resolve()
+          .on('confirmation', async (confirmation, receipt) => {
+            if (receipt.status) {
+              resolve()
+            }
           })
           .on('error', err => reject(err))
       })
@@ -217,8 +219,10 @@ export default {
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
         auction.send({ from: account })
-          .on('transactionHash', async () => {
-            resolve()
+          .on('confirmation', async (confirmation, receipt) => {
+            if (receipt.status) {
+              resolve()
+            }
           })
           .on('error', err => reject(err))
       })
@@ -237,8 +241,10 @@ export default {
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
         auction.send({ from: account })
-          .on('transactionHash', async () => {
-            resolve()
+          .on('confirmation', async (confirmation, receipt) => {
+            if (receipt.status) {
+              resolve()
+            }
           })
           .on('error', err => reject(err))
       })
@@ -259,8 +265,10 @@ export default {
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
         auction.send({ from: account })
-          .on('transactionHash', async () => {
-            resolve()
+          .on('confirmation', async (confirmation, receipt) => {
+            if (receipt.status) {
+              resolve()
+            }
           })
           .on('error', err => reject(err))
       })
@@ -276,8 +284,10 @@ export default {
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
         auction.send({ from: account })
-          .on('transactionHash', async () => {
-            resolve()
+          .on('confirmation', async (confirmation, receipt) => {
+            if (receipt.status) {
+              resolve()
+            }
           })
           .on('error', err => reject(err))
       })
@@ -293,8 +303,10 @@ export default {
       /* eslint-disable-next-line promise/avoid-new */
       return new Promise((resolve, reject) => {
         auction.send({ from: account })
-          .on('transactionHash', async () => {
-            resolve()
+          .on('confirmation', async (confirmation, receipt) => {
+            if (receipt.status) {
+              resolve()
+            }
           })
           .on('error', err => reject(err))
       })
