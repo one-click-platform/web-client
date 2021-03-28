@@ -30,6 +30,7 @@
               @buy-now="buyAndReloadList(item)"
               :is-disabled="isDisabled"
               @claim="claim(item)"
+              @bid="loadOffers()"
             />
           </card-list>
         </template>
@@ -53,7 +54,7 @@
         {{ 'offers-page.create-token-title' | globalize }}
       </template>
 
-      <create-offer-form @submit="isDrawerShown = false" />
+      <create-offer-form @submit="(isDrawerShown = false) || loadOffers()" />
     </drawer>
   </div>
 </template>
@@ -101,6 +102,7 @@ export default {
   methods: {
     async loadOffers () {
       this.isLoaded = false
+      this.isLoadFailed = false
       try {
         this.list = await this.getOffers()
       } catch (e) {
@@ -129,6 +131,7 @@ export default {
         } else {
           await this.claimLot(offer.id)
         }
+        await this.loadOffers()
       } catch (e) {
         ErrorHandler.process(e)
       }

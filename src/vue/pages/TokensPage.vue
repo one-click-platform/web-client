@@ -58,7 +58,7 @@
         {{ 'tokens-page.create-token-title' | globalize }}
       </template>
 
-      <create-token-form @submit="isDrawerShown = false" />
+      <create-token-form @submit="(isDrawerShown = false) || loadTokens()" />
     </drawer>
     <drawer :is-shown.sync="isWithdrawalDrawerShown">
       <template slot="heading">
@@ -110,15 +110,20 @@ export default {
     }
   },
   async created () {
-    try {
-      this.list = await this.getTokens()
-    } catch (e) {
-      ErrorHandler.processWithoutFeedback(e)
-      this.isLoadFailed = true
-    }
-    this.isLoaded = true
+    await this.loadTokens()
   },
   methods: {
+    async loadTokens () {
+      this.isLoadFailed = false
+      this.isLoaded = false
+      try {
+        this.list = await this.getTokens()
+      } catch (e) {
+        ErrorHandler.processWithoutFeedback(e)
+        this.isLoadFailed = true
+      }
+      this.isLoaded = true
+    },
     closeWithdrawalDrawerAndEmitEvent () {
       this.isWithdrawalDrawerShown = false
     },
