@@ -190,7 +190,7 @@ export default {
       step,
       description
     ) {
-      const startTime = (moment(startDate).unix() / 1000).toFixed()
+      const startTime = moment(startDate).unix()
       const duration = moment(endDate).diff(moment(startDate), 'seconds')
 
       const contract = new window.web3.eth.Contract(
