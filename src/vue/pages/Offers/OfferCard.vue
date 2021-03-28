@@ -37,6 +37,9 @@
         </template>
         <template v-else-if="offer.status === '3'">
           <button
+            v-if="account === offer.auctionDetails.creator ||
+              account === offer.auctionDetails.currentBidder
+            "
             class="app__button-flat"
             :disabled="isDisabled"
             @click="$emit(EVENTS.claim)"
@@ -189,10 +192,14 @@ export default {
 
   data () {
     return {
+      account: '',
       EVENTS,
       isBidOpened: false,
       isInfoOpened: false,
     }
+  },
+  async created () {
+    this.account = await this.getAccount()
   },
 }
 </script>
