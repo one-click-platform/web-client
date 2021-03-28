@@ -47,7 +47,9 @@ export default Object.assign(
     /**
      * Ethereum network type. 'main' for Main Ethereum Network
      */
-    ETHEREUM_NETWORK_TYPE: 'test',
+    ETHEREUM_NETWORK_TYPE: '',
+
+    NODE_ENDPOINT: '',
 
     /**
      * Session storage key

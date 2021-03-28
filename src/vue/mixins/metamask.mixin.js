@@ -15,6 +15,8 @@ export default {
     isMetamaskConnected: false,
     isMetamaskEnabled: false,
     isLoadedMetamask: false,
+    isNeedChangeNetwork: false,
+    config,
   }),
 
   computed: {},
@@ -25,6 +27,12 @@ export default {
   },
 
   methods: {
+    checkNetwork () {
+      if (!config.ETHEREUM_NETWORK_TYPE) return
+      const we3ChainId = window.ethereum.chainId
+      this.isNeedChangeNetwork = we3ChainId !== config.ETHEREUM_NETWORK_TYPE
+    },
+
     BN (value) {
       return new BigNumber(value)
     },
@@ -34,7 +42,6 @@ export default {
       return amount.multipliedBy(a)
         .toFixed()
     },
-
     fromWei (value) {
       const amount = this.BN(value)
       const a = this.BN(10 ** 18)
@@ -91,6 +98,11 @@ export default {
       ethereum.on('accountsChanged', async () => {
         await this.checkIfMetamaskIsConnected()
       })
+      ethereum.on('chainChanged', async () => {
+        this.checkNetwork()
+      })
+
+      this.checkNetwork()
 
       await this.checkIfMetamaskIsConnected()
     },
@@ -98,6 +110,7 @@ export default {
     async checkIfMetamaskIsConnected () {
       if (!window.ethereum) return
       this.isMetamaskConnected = Boolean(await this.getAccount())
+      this.checkNetwork()
     },
 
     async getAccount () {

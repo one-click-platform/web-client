@@ -10,28 +10,48 @@
         <metamask-form />
       </div>
       <template v-else>
-        <template v-if="isNavigationRendered">
-          <div
-            class="app__container"
-            :class="{'app__container--fixed': isSidebarOpen}"
-          >
-            <sidebar
-              @open="isSidebarOpen = true"
-              @close="isSidebarOpen = false"
-            />
-
+        <template v-if="!isNeedChangeNetwork">
+          <template v-if="isNavigationRendered">
             <div
-              class="app__main-content"
+              class="app__container"
               :class="{'app__container--fixed': isSidebarOpen}"
             >
-              <div class="app__main">
-                <router-view />
+              <sidebar
+                @open="isSidebarOpen = true"
+                @close="isSidebarOpen = false"
+              />
+
+              <div
+                class="app__main-content"
+                :class="{'app__container--fixed': isSidebarOpen}"
+              >
+                <div class="app__main">
+                  <router-view />
+                </div>
               </div>
             </div>
-          </div>
+          </template>
+          <template v-else>
+            <router-view />
+          </template>
         </template>
         <template v-else>
-          <router-view />
+          <div class="app__metamask-form-wrp">
+            <span class="app__instruction">Instruction</span><br>
+            1. open metamask<br>
+            2. click expand view<br>
+            3. click settings<br>
+            3a. click networks<br>
+            3b. click add network<br>
+            3c. fill fields<br>
+            4. click import account<br>
+            4a. choose json file<br>
+            4b. paste password<br>
+            5. reload frontend<br><br>
+            Network details for using:<br>
+            Chain Id: {{ config.ETHEREUM_NETWORK_TYPE }}
+            Node endpoint: {{ config.NODE_ENDPOINT }}
+          </div>
         </template>
       </template>
     </template>
@@ -161,5 +181,9 @@ export default {
 .app__metamask-form-wrp {
   width: 100%;
   padding: 5%;
+}
+
+.app__instruction {
+  font-size: 2rem;
 }
 </style>
