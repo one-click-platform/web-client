@@ -233,13 +233,15 @@ export default {
       const account = await this.getAccount()
 
       await this.approveErc20(account, config.AUCTION_ADDRESS, price)
-      try {
-        await contract.methods.buyNow(auctionId).send({
-          from: account,
-        })
-      } catch (e) {
-        ErrorHandler.processWithoutFeedback(e)
-      }
+      const auction = contract.methods.buyNow(auctionId)
+      /* eslint-disable-next-line promise/avoid-new */
+      return new Promise((resolve, reject) => {
+        auction.send({ from: account })
+          .on('transactionHash', async () => {
+            resolve()
+          })
+          .on('error', err => reject(err))
+      })
     },
 
     async createBid (id, amount) {
